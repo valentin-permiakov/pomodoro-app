@@ -1,0 +1,16 @@
+@use '../variables' as vars;
+
+.header {
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+
+  .logoContainer {
+    display: flex;
+    align-items: center;
+
+    .logoHeader {
+      margin-left: 12px;
+      color: vars.$mainRed;
+    }
+
+  }
+}

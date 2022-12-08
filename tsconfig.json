@@ -7,7 +7,7 @@
     ],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
+    // "skipLibCheck": true,
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -15,9 +15,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "outDir": "./dist",
     "jsx": "react"
   },
-  "include": [
-    "src"
-  ]
+  // "include": [
+  //   "./src", "./types"
+  // ]
 }
