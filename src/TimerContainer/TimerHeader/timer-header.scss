@@ -1,0 +1,16 @@
+@use '../../variables' as vars;
+
+.timerHeaderContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 733px;
+    padding: 19px 40px;
+    background-color: vars.$timerHeaderColor;
+    color: vars.$white;
+    box-sizing: border-box;
+
+    .timerHeader {
+        margin: 0;
+    }
+}

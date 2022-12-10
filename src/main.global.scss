@@ -1,7 +1,7 @@
 @use 'variables' as vars;
 
 * {
-  color: vars.$black;
+  color: vars.$mainText;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -15,22 +15,21 @@ body {
   line-height: 16px;
   font-family: 'Roboto', serif;
   overflow-x: hidden;
-
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  button {
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-  }
 }
 
+// ul {
+//   margin: 0;
+//   padding: 0;
+//   list-style: none;
+// }
+
+a {
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}

@@ -39,6 +39,10 @@ module.exports = {
         },
       },
       {
+        test: /\.(png|svg|jpg|jpeg|gif|woff2|woff)$/i,
+        type: 'asset/resource',
+      },
+      {
         test: /\.s[ac]ss$/,
         use: [
           IS_PROD ? MiniCssExtractPlugin.loader : 'style-loader',

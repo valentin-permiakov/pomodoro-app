@@ -7,12 +7,12 @@ export enum EIcons {
 
 interface IIconProps {
   name: EIcons,
-  size?: 40 | 16 | 14 | 12
+  size?: number
 }
 
 export function Icon({ name, size = 16 }: IIconProps) {
   const icons = {
-    'PomodoroLogo' : <PomodoroLogo />,
+    'PomodoroLogo' : <PomodoroLogo width={size} height={size} />,
   }
   return (
     <span style={{ width: size, height: size }}>

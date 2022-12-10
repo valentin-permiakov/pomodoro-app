@@ -1,0 +1,16 @@
+@use '../../variables' as vars;
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 70px;
+  background-color: vars.$timerBgColor;
+  .countdown {
+    font-size: 150px;
+    font-weight: 200;
+  }
+  .task {
+    margin-top: 0;
+    margin-bottom: 32px;
+  }
+}
