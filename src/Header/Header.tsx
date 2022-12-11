@@ -1,6 +1,6 @@
-import React from "react"
-import { EIcons, Icon } from "../icons"
-import styles from './header.scss'
+import React from 'react';
+import { EIcons, Icon } from '../icons';
+import styles from './header.scss';
 export const Header = () => {
   return (
     <header className={styles.header}>
@@ -11,5 +11,5 @@ export const Header = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};

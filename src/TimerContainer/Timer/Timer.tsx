@@ -8,6 +8,7 @@ export function Timer() {
   let interval: NodeJS.Timeout;
 
   const startTimer = () => {
+    clearInterval(interval);
     interval = setInterval(() => {
       if (seconds > 0) {
         setSeconds(seconds - 1);

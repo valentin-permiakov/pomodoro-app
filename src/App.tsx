@@ -3,7 +3,7 @@ import { Content } from './Content';
 import { Header } from './Header';
 import { TimerContainer } from './TimerContainer';
 import { TodoContainer } from './TodoContainer';
-import './main.global.scss';
+import './styles/main.global.scss';
 
 export const App = () => {
   return (

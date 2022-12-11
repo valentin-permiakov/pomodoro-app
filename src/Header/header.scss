@@ -1,24 +1,4 @@
-@use '../variables' as vars;
-
-@font-face {
-  font-family: 'SF-UI-display';
-  src: local('SF-UI-display-Light'),
-    url('../assets/fonts/sf-ui-display-light.woff2') format('woff2'),
-    url('../assets/fonts/sf-ui-display-light.woff2') format('woff');
-  font-style: normal;
-  font-display: swap;
-  font-weight: 300;
-}
-
-@font-face {
-  font-family: 'SF-UI-display';
-  src: local('SF-UI-display-Bold'),
-    url('../assets/fonts/sf-ui-display-bold.woff2') format('woff2'),
-    url('../assets/fonts/sf-ui-display-bold.woff2') format('woff');
-  font-style: normal;
-  font-display: swap;
-  font-weight: 700;
-}
+@use '../styles/variables' as vars;
 
 .header {
   margin-bottom: 100px;
@@ -36,11 +16,8 @@
       .logoHeader {
         margin-left: 12px;
         color: vars.$mainRed;
-        font-family: 'SF-UI-display', sans-serif;
         font-weight: 300;
       }
-
     }
   }
-
 }
