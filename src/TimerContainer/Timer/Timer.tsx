@@ -1,46 +1,67 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './timer.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import {
+  changeBreakStatus,
+  changeMinutes,
+  changeSeconds,
+  changeTimerStatus,
+  initialState,
+} from '../../store/timerSlice';
 
 export function Timer() {
-  const [minutes, setMinutes] = useState(1);
-  const [seconds, setSeconds] = useState(10);
-  let interval: NodeJS.Timeout;
+  const isStarted = useSelector((state: RootState) => state.timer.isStarted);
+  const isBreak = useSelector((state: RootState) => state.timer.isBreak);
+  const minutes = useSelector((state: RootState) => state.timer.minutes);
+  const seconds = useSelector((state: RootState) => state.timer.seconds);
+  const dispatch = useDispatch();
+  let timeOut: NodeJS.Timeout;
 
-  const startTimer = () => {
-    clearInterval(interval);
-    interval = setInterval(() => {
+  const runTimer = (minutes: number, seconds: number) => {
+    timeOut = setTimeout(() => {
       if (seconds > 0) {
-        setSeconds(seconds - 1);
+        dispatch(changeSeconds(seconds - 1));
       }
       if (seconds === 0) {
         if (minutes === 0) {
-          clearInterval(interval);
+          clearTimeout(timeOut);
+          dispatch(changeBreakStatus());
+          dispatch(changeTimerStatus());
+          dispatch(changeMinutes(!isBreak ? 0 : initialState.minutes));
+          dispatch(changeSeconds(!isBreak ? 2 : initialState.seconds));
         } else {
-          setMinutes(minutes - 1);
-          setSeconds(59);
+          dispatch(changeMinutes(minutes - 1));
+          dispatch(changeSeconds(59));
         }
       }
     }, 1000);
   };
 
-  // useEffect(() => {
-  //   interval = setInterval(() => {
-  //     if (seconds > 0) {
-  //       setSeconds(seconds - 1);
-  //     }
-  //     if (seconds === 0) {
-  //       if (minutes === 0) {
-  //         clearInterval(interval);
-  //       } else {
-  //         setMinutes(minutes - 1);
-  //         setSeconds(59);
-  //       }
-  //     }
-  //   }, 1000);
+  const startTimer = () => {
+    clearTimeout(timeOut);
+    dispatch(changeTimerStatus());
+    runTimer(minutes, seconds);
+  };
 
-  //   return () => clearInterval(interval);
-  // });
+  const stopTimer = () => {
+    clearTimeout(timeOut);
+    dispatch(changeTimerStatus());
+  };
+
+  const resetTimer = () => {
+    clearTimeout(timeOut);
+    dispatch(changeTimerStatus());
+    dispatch(changeMinutes(initialState.minutes));
+    dispatch(changeSeconds(initialState.seconds));
+  };
+
+  useEffect(() => {
+    if (isStarted) {
+      runTimer(minutes, seconds);
+    }
+  }, [minutes, seconds]);
 
   return (
     <div className={styles.timer}>
@@ -52,8 +73,8 @@ export function Timer() {
         <span>Задача 1 - </span>Сверстать сайт
       </h3>
       <div className={styles.controlsContainer}>
-        <button onClick={() => startTimer()}>Старт</button>
-        <button>Стоп</button>
+        <button onClick={!isStarted ? startTimer : stopTimer}>Старт</button>
+        <button onClick={resetTimer}>{isBreak ? 'Пропустить' : 'Стоп'}</button>
       </div>
     </div>
   );
