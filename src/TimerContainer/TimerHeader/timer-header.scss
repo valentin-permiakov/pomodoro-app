@@ -7,10 +7,16 @@
   width: 733px;
   padding: 19px 40px;
   background-color: vars.$timerHeaderColor;
+  transition: background-color 0.2s ease-in;
 
   .timerHeader,
   .pomodoroCount {
     margin: 0;
     color: vars.$white;
+    font-size: 16px;
   }
+}
+
+.headerContainerPause {
+  background-color: vars.$mainRed;
 }

@@ -1,11 +1,14 @@
 import React from 'react';
 
-interface PomodoroLogoProps {
+interface IPomodoroLogoProps {
   width?: number;
   height?: number;
 }
 
-export function PomodoroLogo({ width = 40, height = 40 }: PomodoroLogoProps) {
+export const PomodoroLogo = ({
+  width = 40,
+  height = 40,
+}: IPomodoroLogoProps) => {
   return (
     <svg
       width={width}
@@ -35,4 +38,4 @@ export function PomodoroLogo({ width = 40, height = 40 }: PomodoroLogoProps) {
       </defs>
     </svg>
   );
-}
+};

@@ -1,0 +1,21 @@
+@use '../../../../styles/mixins';
+@use '../../../../styles/variables' as vars;
+
+.todoItem {
+  display: grid;
+  grid-template-columns: 35px 1fr 26px;
+  gap: 0 10px;
+  align-items: center;
+  max-width: 70%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 1px solid vars.$todoBorder;
+  border-left: 0;
+  border-right: 0;
+
+  .pomodoroNumber {
+    padding: 8px 9px;
+    border: 1px solid vars.$mainRed;
+    border-radius: 50%;
+  }
+}

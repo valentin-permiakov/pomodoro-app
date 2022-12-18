@@ -1,18 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ITimerSettings, timerSettings } from '../globalConst';
 
-export interface ITimerState {
-  isStarted: boolean;
-  minutes: number;
-  seconds: number;
-  isBreak: boolean;
-}
-
-export const initialState: ITimerState = {
-  isStarted: false,
-  minutes: 0,
-  seconds: 3,
-  isBreak: false,
-};
+export const initialState: ITimerSettings = timerSettings;
 
 export const timerSlice = createSlice({
   name: 'timer',
@@ -21,22 +10,38 @@ export const timerSlice = createSlice({
     changeTimerStatus: (state) => {
       state.isStarted = !state.isStarted;
     },
-    changeMinutes: (state, action: PayloadAction<number>) => {
-      state.minutes = action.payload;
-    },
-    changeSeconds: (state, action: PayloadAction<number>) => {
-      state.seconds = action.payload;
-    },
     changeBreakStatus: (state) => {
       state.isBreak = !state.isBreak;
+    },
+    changePauseStatus: (state) => {
+      state.isPaused = !state.isPaused;
+    },
+    changeFirstStartStatus: (state) => {
+      state.isFirstStart = !state.isFirstStart;
+    },
+    changeMinutes: (state, action: PayloadAction<number>) => {
+      state.pomodoroMinutes = action.payload;
+    },
+    changeSeconds: (state, action: PayloadAction<number>) => {
+      state.pomodoroSeconds = action.payload;
+    },
+    changePomodoroCount: (state, action: PayloadAction<number>) => {
+      state.pomodoroCount = action.payload;
+    },
+    changeBreakCount: (state, action: PayloadAction<number>) => {
+      state.breakCount = action.payload;
     },
   },
 });
 
 export const {
   changeTimerStatus,
+  changeBreakStatus,
+  changePauseStatus,
+  changeFirstStartStatus,
   changeMinutes,
   changeSeconds,
-  changeBreakStatus,
+  changePomodoroCount,
+  changeBreakCount,
 } = timerSlice.actions;
 export default timerSlice.reducer;
