@@ -19,6 +19,9 @@ export const timerSlice = createSlice({
     changeFirstStartStatus: (state) => {
       state.isFirstStart = !state.isFirstStart;
     },
+    changeIsModalOpenStatus: (state, action: PayloadAction<boolean>) => {
+      state.isModalOpen = action.payload;
+    },
     changeMinutes: (state, action: PayloadAction<number>) => {
       state.pomodoroMinutes = action.payload;
     },
@@ -39,6 +42,7 @@ export const {
   changeBreakStatus,
   changePauseStatus,
   changeFirstStartStatus,
+  changeIsModalOpenStatus,
   changeMinutes,
   changeSeconds,
   changePomodoroCount,

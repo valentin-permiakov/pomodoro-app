@@ -11,6 +11,7 @@ export interface ITimerSettings {
   bigBreakSeconds: number;
   pomodoroCount: number;
   breakCount: number;
+  isModalOpen: boolean;
 }
 
 export const timerSettings: ITimerSettings = {
@@ -26,4 +27,5 @@ export const timerSettings: ITimerSettings = {
   bigBreakSeconds: 0,
   pomodoroCount: 1,
   breakCount: 1,
+  isModalOpen: false,
 };

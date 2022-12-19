@@ -1,3 +1,4 @@
+import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
@@ -11,12 +12,21 @@ import {
   changeTimerStatus,
   initialState,
 } from '../../../store/timerSlice';
-import { removeTodoItem } from '../../../store/todoSlice';
+import { ITodoItem, removeTodoItem } from '../../../store/todoSlice';
 import styles from './timer-contols.scss';
 
 interface ITimerControlsProps {
   timeOut: NodeJS.Timeout;
-  runTimer: (minutes: number, seconds: number) => void;
+  runTimer: (
+    timeOut: NodeJS.Timeout,
+    dispatch: Dispatch<AnyAction>,
+    isBreak: boolean,
+    minutes: number,
+    seconds: number,
+    pomodoroCount: number,
+    breakCount: number,
+    taskList: ITodoItem[]
+  ) => void;
 }
 
 export function TimerContols({ timeOut, runTimer }: ITimerControlsProps) {
@@ -35,12 +45,23 @@ export function TimerContols({ timeOut, runTimer }: ITimerControlsProps) {
   const pomodoroCount = useSelector(
     (state: RootState) => state.timer.pomodoroCount
   );
+  const breakCount = useSelector((state: RootState) => state.timer.breakCount);
+  const taskList = useSelector((state: RootState) => state.todo);
   const dispatch = useDispatch();
 
   const startTimer = () => {
     clearTimeout(timeOut);
     dispatch(changeTimerStatus());
-    runTimer(minutes, seconds);
+    runTimer(
+      timeOut,
+      dispatch,
+      isBreak,
+      minutes,
+      seconds,
+      pomodoroCount,
+      breakCount,
+      taskList
+    );
     if (isPaused) dispatch(changePauseStatus());
     if (isFirstStart) {
       dispatch(changeFirstStartStatus());

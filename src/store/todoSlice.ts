@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ITodoItem {
+export interface ITodoItem {
   todoName: string;
   pomodoroNumber: number;
   timeStamp: number;
