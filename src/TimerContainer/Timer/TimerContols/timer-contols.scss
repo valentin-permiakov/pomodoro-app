@@ -1,0 +1,20 @@
+@use '../../../styles/mixins';
+@use '../../../styles/variables' as vars;
+
+.startBtn {
+  @include mixins.btnMain;
+  margin-right: 25px;
+}
+
+.stopBtn {
+  @include mixins.btnSecond;
+}
+
+.endTaskBtn {
+  color: vars.$mainRed;
+  border: 2px solid vars.$mainRed;
+  &:hover {
+    background-color: vars.$mainRed;
+    color: vars.$white;
+  }
+}

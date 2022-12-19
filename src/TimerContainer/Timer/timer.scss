@@ -7,20 +7,7 @@
   padding-top: 70px;
   padding-bottom: 107px;
   background-color: vars.$timerBgColor;
-  .countdown {
-    margin: 0;
-    font-size: 150px;
-    line-height: 179px;
-    font-weight: 200;
-    span {
-      transition: color 0.2s ease-in;
-    }
-  }
-  .pausedCountdown {
-    span {
-      color: vars.$mainRed;
-    }
-  }
+
   .task {
     margin-top: 0;
     margin-bottom: 32px;
@@ -28,23 +15,6 @@
     font-weight: 400;
     span {
       color: vars.$textLight;
-    }
-  }
-  .startBtn {
-    @include mixins.btnMain;
-    margin-right: 25px;
-  }
-
-  .stopBtn {
-    @include mixins.btnSecond;
-  }
-
-  .endTaskBtn {
-    color: vars.$mainRed;
-    border: 2px solid vars.$mainRed;
-    &:hover {
-      background-color: vars.$mainRed;
-      color: vars.$white;
     }
   }
 }

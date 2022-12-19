@@ -25,5 +25,5 @@ export const timerSettings: ITimerSettings = {
   bigBreakMinutes: 15,
   bigBreakSeconds: 0,
   pomodoroCount: 1,
-  breakCount: 0,
+  breakCount: 1,
 };
