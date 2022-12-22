@@ -1,7 +1,5 @@
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
 import {
   changeBreakStatus,
   changeFirstStartStatus,
@@ -27,28 +25,32 @@ interface ITimerControlsProps {
     breakCount: number,
     taskList: ITodoItem[]
   ) => void;
+  isStarted: boolean;
+  isBreak: boolean;
+  isPaused: boolean;
+  isFirstStart: boolean;
+  minutes: number;
+  seconds: number;
+  pomodoroCount: number;
+  breakCount: number;
+  taskList: ITodoItem[];
+  dispatch: Dispatch<AnyAction>;
 }
 
-export function TimerContols({ timeOut, runTimer }: ITimerControlsProps) {
-  const isStarted = useSelector((state: RootState) => state.timer.isStarted);
-  const isBreak = useSelector((state: RootState) => state.timer.isBreak);
-  const isPaused = useSelector((state: RootState) => state.timer.isPaused);
-  const isFirstStart = useSelector(
-    (state: RootState) => state.timer.isFirstStart
-  );
-  const minutes = useSelector(
-    (state: RootState) => state.timer.pomodoroMinutes
-  );
-  const seconds = useSelector(
-    (state: RootState) => state.timer.pomodoroSeconds
-  );
-  const pomodoroCount = useSelector(
-    (state: RootState) => state.timer.pomodoroCount
-  );
-  const breakCount = useSelector((state: RootState) => state.timer.breakCount);
-  const taskList = useSelector((state: RootState) => state.todo);
-  const dispatch = useDispatch();
-
+export function TimerContols({
+  timeOut,
+  runTimer,
+  isStarted,
+  isBreak,
+  isPaused,
+  isFirstStart,
+  minutes,
+  seconds,
+  pomodoroCount,
+  breakCount,
+  taskList,
+  dispatch,
+}: ITimerControlsProps) {
   const startTimer = () => {
     clearTimeout(timeOut);
     dispatch(changeTimerStatus());

@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import styles from './todoform.scss';
 import { useDispatch } from 'react-redux';
 import { addTodoItem } from '../../../store/todoSlice';
+import { changePomodoroCount } from '../../../store/timerSlice';
 
 export function TodoForm() {
   const refText = useRef<HTMLInputElement>(null);
@@ -27,6 +28,7 @@ export function TodoForm() {
         timeStamp: Date.now(),
       })
     );
+    dispatch(changePomodoroCount(1));
     setTaskNameValue('');
     setTaskPomodoroNumber(1);
   };

@@ -1,0 +1,32 @@
+@use '../../../../../../styles/variables' as vars;
+@use '../../../../../../styles/mixins';
+
+.menuList {
+  @include mixins.listReset;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 15px 15px 15px;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  .menuItem:not(:last-child) {
+    margin-bottom: 12px;
+  }
+
+  .menuBtn {
+    @include mixins.btnReset;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    color: vars.$textLight;
+
+    &:hover {
+      color: vars.$mainBtn;
+    }
+
+    span {
+      margin-right: 8px;
+    }
+  }
+}

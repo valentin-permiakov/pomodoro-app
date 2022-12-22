@@ -2,6 +2,7 @@
 @use '../../../../styles/variables' as vars;
 
 .todoItem {
+  position: relative;
   display: grid;
   grid-template-columns: 35px 1fr 26px;
   gap: 0 10px;
@@ -17,5 +18,31 @@
     padding: 8px 9px;
     border: 1px solid vars.$mainRed;
     border-radius: 50%;
+  }
+
+  .taskInput {
+    padding: 7px 15px;
+    width: 100%;
+    background-color: vars.$timerBgColor;
+    border: 0;
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  .changeBtn {
+    @include mixins.btnReset;
+    position: absolute;
+    top: 26px;
+    right: 44px;
+
+    svg {
+      fill: vars.$mainBtn;
+    }
+
+    &:hover {
+      svg {
+        fill: vars.$mainBtnHover;
+      }
+    }
   }
 }

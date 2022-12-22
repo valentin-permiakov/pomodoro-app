@@ -24,7 +24,6 @@ export const runTimer = (
   taskList: ITodoItem[]
 ) => {
   const taskLength = taskList[0]?.pomodoroNumber || 1;
-  console.log(taskList.length);
   timeOut = setTimeout(() => {
     if (seconds > 0) {
       dispatch(changeSeconds(seconds - 1));

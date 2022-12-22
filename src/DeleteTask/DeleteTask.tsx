@@ -4,14 +4,15 @@ import ReactDOM from 'react-dom';
 import styles from './delete-task.scss';
 import { EIcons, Icon } from '../icons/Icon';
 import { useDispatch } from 'react-redux';
-import { removeTodoItem } from '../store/todoSlice';
 import { changePomodoroCount } from '../store/timerSlice';
+import { increasePomorodo, removeTodoItem } from '../store/todoSlice';
 
 interface IDeleteTaskProps {
   onClose: () => void;
+  timestamp: number;
 }
 
-export function DeleteTask({ onClose }: IDeleteTaskProps) {
+export function DeleteTask({ onClose, timestamp }: IDeleteTaskProps) {
   const refModal = useRef<HTMLDivElement>(null);
   const refContent = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ export function DeleteTask({ onClose }: IDeleteTaskProps) {
         !refContent.current?.contains(event.target)
       ) {
         onClose();
+        dispatch(increasePomorodo(timestamp));
       }
     }
 

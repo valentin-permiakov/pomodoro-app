@@ -14,6 +14,7 @@ export function TodoList() {
           key={item.timeStamp}
           name={item.todoName}
           pomodoroNumber={item.pomodoroNumber}
+          timestamp={item.timeStamp}
         />
       ))}
     </ul>

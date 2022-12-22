@@ -1,6 +1,9 @@
 @use '../../../../../styles/mixins';
 @use '../../../../../styles/variables' as vars;
 
-.menuBtn {
-  @include mixins.btnReset;
+.menu {
+  position: relative;
+  .menuBtn {
+    @include mixins.btnReset;
+  }
 }
