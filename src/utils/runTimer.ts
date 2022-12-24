@@ -1,4 +1,5 @@
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import notification from '../assets/sounds/alert.mp3';
 
 import {
   changeBreakCount,
@@ -12,6 +13,7 @@ import {
   initialState,
 } from '../store/timerSlice';
 import { ITodoItem } from '../store/todoSlice';
+import { createNotification } from './browserNotifications';
 
 export const runTimer = (
   timeOut: NodeJS.Timeout,
@@ -23,6 +25,8 @@ export const runTimer = (
   breakCount: number,
   taskList: ITodoItem[]
 ) => {
+  const audio = new Audio(notification);
+
   const taskLength = taskList[0]?.pomodoroNumber || 1;
   timeOut = setTimeout(() => {
     if (seconds > 0) {
@@ -35,6 +39,8 @@ export const runTimer = (
           console.log('done!');
         }
         clearTimeout(timeOut);
+        audio.play();
+        createNotification(isBreak ? 'Break' : 'Pomodoro');
         dispatch(changeBreakStatus());
         dispatch(changeTimerStatus());
         dispatch(changeFirstStartStatus());

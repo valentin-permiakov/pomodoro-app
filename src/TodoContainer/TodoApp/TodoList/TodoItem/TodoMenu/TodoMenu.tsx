@@ -22,21 +22,23 @@ export function TodoMenu({ timestamp, openEdit }: ITodoMenuProps) {
   return (
     <div className={styles.menu}>
       <button
-        className={styles.menuBtn}
+        className={`${styles.menuBtn} ${
+          isDropdownOpen ? styles.activeBtn : ''
+        }`}
         ref={btnRef}
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         <Icon name={EIcons.menuIcon} size={26} />
       </button>
       {isDropdownOpen && (
-        <Dropdown
-          top={top}
-          left={left}
-          onClose={() => {
-            setIsDropdownOpen(false);
-          }}
-        >
-          <MenuItemsList timestamp={timestamp} openEdit={openEdit} />
+        <Dropdown top={top} left={left}>
+          <MenuItemsList
+            timestamp={timestamp}
+            openEdit={openEdit}
+            closeList={() => {
+              setIsDropdownOpen(false);
+            }}
+          />
         </Dropdown>
       )}
     </div>

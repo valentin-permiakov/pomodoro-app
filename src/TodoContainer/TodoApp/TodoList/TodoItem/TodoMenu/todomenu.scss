@@ -5,5 +5,18 @@
   position: relative;
   .menuBtn {
     @include mixins.btnReset;
+    svg {
+      circle {
+        fill: vars.$timerHeaderColor;
+      }
+    }
+  }
+
+  .activeBtn {
+    svg {
+      circle {
+        fill: vars.$mainBtn;
+      }
+    }
   }
 }

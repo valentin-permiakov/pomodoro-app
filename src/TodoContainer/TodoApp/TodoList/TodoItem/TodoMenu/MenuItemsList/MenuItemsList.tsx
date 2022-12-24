@@ -11,9 +11,14 @@ import {
 interface IMenuItemListProps {
   timestamp: number;
   openEdit: () => void;
+  closeList: () => void;
 }
 
-export const MenuItemsList = ({ timestamp, openEdit }: IMenuItemListProps) => {
+export const MenuItemsList = ({
+  timestamp,
+  openEdit,
+  closeList,
+}: IMenuItemListProps) => {
   const dispatch = useDispatch();
   return (
     <ul className={styles.menuList}>
@@ -36,7 +41,13 @@ export const MenuItemsList = ({ timestamp, openEdit }: IMenuItemListProps) => {
         </button>
       </li>
       <li className={styles.menuItem}>
-        <button className={styles.menuBtn} onClick={openEdit}>
+        <button
+          className={styles.menuBtn}
+          onClick={() => {
+            openEdit();
+            closeList();
+          }}
+        >
           <Icon name={EIcons.editIcon} size={18} />
           Редактировать
         </button>

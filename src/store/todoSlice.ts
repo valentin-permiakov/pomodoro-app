@@ -6,13 +6,27 @@ export interface ITodoItem {
   timeStamp: number;
 }
 
-export const initialState: ITodoItem[] = [
-  {
-    todoName: 'test',
-    pomodoroNumber: 2,
-    timeStamp: 29292,
-  },
-];
+const arr: unknown[] = [];
+
+const request = indexedDB.open('todo');
+request.onsuccess = function () {
+  const db = request.result;
+  const transaction = db.transaction('todoList', 'readwrite');
+
+  const store = transaction.objectStore('todoList');
+
+  store.put({ timeStamp: 2, todoName: 'test', pomodoroNumber: 23 });
+
+  const query = store.getAll();
+  query.onsuccess = function () {
+    arr.push(query.result);
+    console.log(query.result);
+  };
+};
+
+console.log(arr);
+
+export const initialState: ITodoItem[] = [];
 export const todoSlice = createSlice({
   name: 'todo',
   initialState,
