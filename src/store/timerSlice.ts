@@ -4,9 +4,17 @@ import { ITimerSettings, timerSettings } from '../globalConst';
 interface IInitialState extends ITimerSettings {
   currentMinutes: number;
   currentSeconds: number;
+  today: string;
 }
 if (!localStorage.getItem('timer'))
-  localStorage.setItem('timer', JSON.stringify(timerSettings));
+  localStorage.setItem(
+    'timer',
+    JSON.stringify({
+      ...timerSettings,
+      currentMinutes: timerSettings.pomodoroMinutes,
+      currentSeconds: timerSettings.pomodoroSeconds,
+    })
+  );
 
 const LSTimer: IInitialState = JSON.parse(localStorage.getItem('timer') || '');
 
@@ -26,9 +34,11 @@ export const initialState: IInitialState = {
   isModalOpen: LSTimer.isModalOpen,
   currentMinutes: timerSettings.pomodoroMinutes,
   currentSeconds: timerSettings.pomodoroSeconds,
+  today: new Date().toDateString(),
 };
 
 if (initialState.isBreak) {
+  // check if it was time for a break and set the time accordinagly
   initialState.currentMinutes = initialState.breakMinutes;
   initialState.currentSeconds = initialState.breakSeconds;
   if ((initialState.breakCount - 1) % 4 === 0) {
@@ -38,6 +48,7 @@ if (initialState.isBreak) {
 }
 
 if (
+  // check if timer was paused and then reloaded
   (initialState.currentMinutes !== LSTimer.currentMinutes ||
     initialState.currentSeconds !== LSTimer.currentSeconds) &&
   LSTimer.currentMinutes !== 0 &&
@@ -45,6 +56,12 @@ if (
 ) {
   initialState.currentMinutes = LSTimer.currentMinutes;
   initialState.currentSeconds = LSTimer.currentSeconds;
+}
+
+// resets breakCount and pomodoroCount on a new day
+if (new Date().toDateString() !== LSTimer.today) {
+  initialState.breakCount = 1;
+  initialState.pomodoroCount = 1;
 }
 
 export const timerSlice = createSlice({

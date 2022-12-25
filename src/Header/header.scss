@@ -4,7 +4,7 @@
   margin-bottom: 100px;
   padding-top: 19px;
   padding-bottom: 15px;
-  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 50px vars.$boxshodowColor;
 
   .container {
     display: flex;

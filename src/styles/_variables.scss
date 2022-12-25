@@ -8,3 +8,15 @@ $mainBtnHover: #899441;
 $mainRed: #dc3e22;
 $darkRed: #b7280f;
 $white: #fff;
+$boxshodowColor: rgba(0, 0, 0, 0.15);
+
+[data-theme='dark'] {
+  $mainText: #ffffffd0;
+  $todoBorder: #464646;
+  $timerHeaderColor: #aaa9a9;
+  $timerBgColor: #363636;
+  $mainRed: #dc3e22c8;
+  $darkRed: #b7280fa6;
+  $white: #121212;
+  $boxshodowColor: rgba(255, 255, 255, 0.121);
+}

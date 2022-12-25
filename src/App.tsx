@@ -4,6 +4,7 @@ import { Header } from './Header';
 import { TimerContainer } from './TimerContainer';
 import { TodoContainer } from './TodoContainer';
 import './styles/main.global.scss';
+import './styles/_variables.scss';
 
 export const App = () => {
   return (
