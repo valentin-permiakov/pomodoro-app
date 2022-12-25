@@ -21,7 +21,7 @@ export const timerSettings: ITimerSettings = {
   isPaused: false,
   pomodoroMinutes: 0,
   pomodoroSeconds: 2,
-  breakMinutes: 0,
+  breakMinutes: 10,
   breakSeconds: 3,
   bigBreakMinutes: 15,
   bigBreakSeconds: 0,

@@ -36,7 +36,6 @@ export const runTimer = (
       if (minutes === 0) {
         if (pomodoroCount === taskLength && taskList.length !== 0) {
           dispatch(changeIsModalOpenStatus(true));
-          console.log('done!');
         }
         clearTimeout(timeOut);
         audio.play();

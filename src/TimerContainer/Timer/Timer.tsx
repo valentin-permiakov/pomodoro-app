@@ -18,6 +18,8 @@ interface ITimerProps {
 let timeOut: NodeJS.Timeout;
 
 export function Timer({ taskName = 'Добавьте задание' }: ITimerProps) {
+  const dispatch = useDispatch();
+
   const isStarted = useSelector((state: RootState) => state.timer.isStarted);
   const isBreak = useSelector((state: RootState) => state.timer.isBreak);
   const isPaused = useSelector((state: RootState) => state.timer.isPaused);
@@ -27,18 +29,15 @@ export function Timer({ taskName = 'Добавьте задание' }: ITimerPr
   const isModalOpened = useSelector(
     (state: RootState) => state.timer.isModalOpen
   );
-  const minutes = useSelector(
-    (state: RootState) => state.timer.pomodoroMinutes
-  );
-  const seconds = useSelector(
-    (state: RootState) => state.timer.pomodoroSeconds
-  );
+
+  const minutes = useSelector((state: RootState) => state.timer.currentMinutes);
+  const seconds = useSelector((state: RootState) => state.timer.currentSeconds);
+  const breakCount = useSelector((state: RootState) => state.timer.breakCount);
   const pomodoroCount = useSelector(
     (state: RootState) => state.timer.pomodoroCount
   );
-  const breakCount = useSelector((state: RootState) => state.timer.breakCount);
+
   const taskList = useSelector((state: RootState) => state.todo);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isStarted) {

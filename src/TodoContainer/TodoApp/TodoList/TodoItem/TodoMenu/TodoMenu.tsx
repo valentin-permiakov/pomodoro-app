@@ -17,7 +17,6 @@ export function TodoMenu({ timestamp, openEdit }: ITodoMenuProps) {
     : 0;
   const left = coordinates ? coordinates.left - coordinates.width - 35 : 0;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  console.log(isDropdownOpen);
 
   return (
     <div className={styles.menu}>
