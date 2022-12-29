@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import timerSlice from './timerSlice';
 import { todoSlice } from './todoSlice';
+import { colorThemeSlice } from './colorThemeSlice';
 
 export const store = configureStore({
   reducer: {
     timer: timerSlice,
     todo: todoSlice.reducer,
+    colorTheme: colorThemeSlice.reducer,
   },
 });
 

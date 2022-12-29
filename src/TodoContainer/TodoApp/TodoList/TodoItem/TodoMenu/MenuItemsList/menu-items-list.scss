@@ -7,8 +7,8 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 10px 15px 15px 15px;
-  background-color: vars.$white;
-  box-shadow: 0 0 20px vars.$boxshodowColor;
+  background-color: var(--backgroundColor);
+  box-shadow: 0 0 20px var(--boxshadowColor);
 
   .menuItem:not(:last-child) {
     margin-bottom: 12px;

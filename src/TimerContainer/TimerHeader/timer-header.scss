@@ -6,7 +6,7 @@
   align-items: center;
   width: 100%;
   padding: 19px 40px;
-  background-color: vars.$timerHeaderColor;
+  background-color: var(--timerHeaderColor);
   transition: background-color 0.2s ease-in;
 
   .timerHeader,
@@ -18,5 +18,5 @@
 }
 
 .headerContainerPause {
-  background-color: vars.$mainRed;
+  background-color: var(--mainRed);
 }

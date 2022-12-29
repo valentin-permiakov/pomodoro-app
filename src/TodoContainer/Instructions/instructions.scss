@@ -20,7 +20,7 @@
       line-height: 33px;
 
       &::marker {
-        color: vars.$darkRed;
+        color: var(--darkRed);
       }
     }
   }

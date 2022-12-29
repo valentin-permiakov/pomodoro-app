@@ -52,6 +52,6 @@
   border: 2px solid vars.$textLight;
   &:hover {
     background-color: vars.$textLight;
-    color: vars.$white;
+    color: var(--backgroundColor);
   }
 }

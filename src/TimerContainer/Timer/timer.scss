@@ -6,7 +6,7 @@
   align-items: center;
   padding-top: 70px;
   padding-bottom: 107px;
-  background-color: vars.$timerBgColor;
+  background-color: var(--timerBgColor);
 
   .task {
     margin-top: 0;

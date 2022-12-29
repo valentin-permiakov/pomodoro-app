@@ -19,7 +19,7 @@
     align-items: center;
     padding: 25px 84px;
     max-width: 350px;
-    background-color: #fff;
+    background-color: var(--backgroundColor);
 
     .heading {
       margin-top: 0;
@@ -30,11 +30,11 @@
     .deleteBtn {
       @include mixins.btnStyle;
       margin-bottom: 10px;
-      background-color: vars.$mainRed;
+      background-color: var(--mainRed);
       color: vars.$white;
 
       &:hover {
-        background-color: vars.$darkRed;
+        background-color: var(--darkRed);
       }
     }
 
@@ -53,12 +53,12 @@
       padding: 5px;
 
       svg {
-        fill: vars.$timerHeaderColor;
+        fill: var(--timerHeaderColor);
       }
 
       &:hover {
         svg {
-          fill: vars.$mainText;
+          fill: var(--mainText);
         }
       }
     }

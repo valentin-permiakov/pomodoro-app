@@ -10,6 +10,6 @@
 }
 .pausedCountdown {
   span {
-    color: vars.$mainRed;
+    color: var(--mainRed);
   }
 }

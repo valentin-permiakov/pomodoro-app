@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  max-width: 1280px;
+
+  .logoContainer {
+    display: flex;
+    align-items: center;
+
+    svg {
+      fill: var(--mainRed);
+    }
+
+    .logoHeader {
+      margin: 0;
+      margin-left: 12px;
+      color: var(--mainRed);
+      font-weight: 300;
+    }
+  }
+}

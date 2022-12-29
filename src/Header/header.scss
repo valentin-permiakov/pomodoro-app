@@ -1,26 +1,13 @@
-@use '../styles/variables' as vars;
-
 .header {
   margin-bottom: 100px;
   padding-top: 19px;
   padding-bottom: 15px;
-  box-shadow: 0px 0px 50px vars.$boxshodowColor;
+  box-shadow: 0px 0px 50px var(--boxshadowColor);
+}
 
-  .container {
-    display: flex;
-    max-width: 1280px;
-    margin: 0 auto;
-
-    .logoContainer {
-      display: flex;
-      align-items: center;
-
-      .logoHeader {
-        margin: 0;
-        margin-left: 12px;
-        color: vars.$mainRed;
-        font-weight: 300;
-      }
-    }
-  }
+.container {
+  max-width: 1280px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
 }

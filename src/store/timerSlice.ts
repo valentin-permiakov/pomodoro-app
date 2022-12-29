@@ -62,6 +62,10 @@ if (
 if (new Date().toDateString() !== LSTimer.today) {
   initialState.breakCount = 1;
   initialState.pomodoroCount = 1;
+  initialState.isBreak = false;
+  initialState.isStarted = false;
+  initialState.isPaused = false;
+  initialState.isFirstStart = true;
 }
 
 export const timerSlice = createSlice({

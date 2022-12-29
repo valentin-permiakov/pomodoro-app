@@ -24,7 +24,7 @@ export function TimerHeader({
     >
       <h2 className={styles.timerHeader}>{taskName}</h2>
       <span className={styles.pomodoroCount}>
-        {isBreak ? `Перерыв ${breakCount}` : `Помидор ${pomodoroCount}`}
+        {isBreak ? `Перерыв ${breakCount - 1}` : `Помидор ${pomodoroCount}`}
       </span>
     </div>
   );

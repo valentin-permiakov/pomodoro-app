@@ -7,6 +7,8 @@ import { DecreaseIcon } from './DecreaseIcon';
 import { EditIcon } from './EditIcon';
 import { DeleteIcon } from './DeleteIcon';
 import { CheckIcon } from './CheckIcon';
+import { DarkIcon } from './DarkIcon';
+import { LightIcon } from './LightIcon';
 
 export enum EIcons {
   logo = 'PomodoroLogo',
@@ -17,6 +19,8 @@ export enum EIcons {
   editIcon = 'EditIcon',
   deleteIcon = 'DeleteIcon',
   checkIcon = 'CheckIcon',
+  darkIcon = 'DarkIcon',
+  lightIcon = 'LightIcon',
 }
 
 interface IIconProps {
@@ -34,6 +38,8 @@ export const Icon = ({ name, size = 16 }: IIconProps) => {
     EditIcon: <EditIcon width={size} height={size} />,
     DeleteIcon: <DeleteIcon width={size} height={size} />,
     CheckIcon: <CheckIcon width={size} height={size} />,
+    DarkIcon: <DarkIcon width={size} height={size} />,
+    LightIcon: <LightIcon width={size} height={size} />,
   };
   return <span style={{ width: size, height: size }}>{icons[name]}</span>;
 };

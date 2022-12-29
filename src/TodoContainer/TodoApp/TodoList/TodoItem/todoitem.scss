@@ -10,20 +10,20 @@
   max-width: 70%;
   padding-top: 15px;
   padding-bottom: 15px;
-  border: 1px solid vars.$todoBorder;
+  border: 1px solid var(--todoBorder);
   border-left: 0;
   border-right: 0;
 
   .pomodoroNumber {
     padding: 8px 9px;
-    border: 1px solid vars.$mainRed;
+    border: 1px solid var(--mainRed);
     border-radius: 50%;
   }
 
   .taskInput {
     padding: 7px 15px;
     width: 100%;
-    background-color: vars.$timerBgColor;
+    background-color: var(--timerBgColor);
     border: 0;
     font-size: 16px;
     font-weight: 300;

@@ -22,7 +22,7 @@
   .todoInput {
     padding: 19px 15px;
     width: 100%;
-    background-color: vars.$timerBgColor;
+    background-color: var(--timerBgColor);
     border: 0;
     font-size: 16px;
     font-weight: 300;

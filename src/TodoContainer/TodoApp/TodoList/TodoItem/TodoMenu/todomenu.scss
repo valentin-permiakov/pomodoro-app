@@ -7,7 +7,7 @@
     @include mixins.btnReset;
     svg {
       circle {
-        fill: vars.$timerHeaderColor;
+        fill: var(--timerHeaderColor);
       }
     }
   }

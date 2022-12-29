@@ -11,10 +11,10 @@
 }
 
 .endTaskBtn {
-  color: vars.$mainRed;
-  border: 2px solid vars.$mainRed;
+  color: var(--mainRed);
+  border: 2px solid var(--mainRed);
   &:hover {
-    background-color: vars.$mainRed;
-    color: vars.$white;
+    background-color: var(--mainRed);
+    color: var(--backgroundColor);
   }
 }
