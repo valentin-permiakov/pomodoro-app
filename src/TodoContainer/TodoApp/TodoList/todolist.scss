@@ -1,0 +1,6 @@
+@use '../../../styles/mixins';
+
+.todoList {
+  @include mixins.listReset;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,57 @@
+@use './variables' as vars;
+
+@mixin listReset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin btnReset {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+@mixin btnStyle {
+  @include btnReset();
+  padding: 19px 50px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 17px;
+  transition: color 0.2s ease-in, border-color 0.2s ease-in,
+    background-color 0.2s ease-in;
+  &:hover {
+    transition: color 0.2s ease-in, border-color 0.2s ease-in,
+      background-color 0.2s ease-in;
+  }
+}
+
+@mixin btnMain {
+  @include btnStyle();
+  color: #fff;
+  background-color: vars.$mainBtn;
+  border: 2px solid vars.$mainBtn;
+  &:hover {
+    background-color: vars.$mainBtnHover;
+    border: 2px solid vars.$mainBtnHover;
+  }
+  &:disabled {
+    opacity: 0.7;
+    cursor: auto;
+    &:hover {
+      background-color: vars.$mainBtn;
+      border: 2px solid vars.$mainBtn;
+    }
+  }
+}
+
+@mixin btnSecond {
+  @include btnStyle();
+  color: vars.$textLight;
+  border: 2px solid vars.$textLight;
+  &:hover {
+    background-color: vars.$textLight;
+    color: var(--backgroundColor);
+  }
+}

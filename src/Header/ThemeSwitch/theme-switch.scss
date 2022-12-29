@@ -1,0 +1,21 @@
+@use '../../styles/mixins';
+
+.themeButton {
+  @include mixins.btnReset;
+
+  svg {
+    circle,
+    path {
+      fill: #e1bd1e;
+    }
+  }
+
+  &:hover {
+    svg {
+      circle,
+      path {
+        fill: #ca980d;
+      }
+    }
+  }
+}

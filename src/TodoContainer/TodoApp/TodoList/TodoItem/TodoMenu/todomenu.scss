@@ -1,0 +1,22 @@
+@use '../../../../../styles/mixins';
+@use '../../../../../styles/variables' as vars;
+
+.menu {
+  position: relative;
+  .menuBtn {
+    @include mixins.btnReset;
+    svg {
+      circle {
+        fill: var(--timerHeaderColor);
+      }
+    }
+  }
+
+  .activeBtn {
+    svg {
+      circle {
+        fill: vars.$mainBtn;
+      }
+    }
+  }
+}

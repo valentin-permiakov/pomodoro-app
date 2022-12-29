@@ -1,0 +1,25 @@
+$textLight: #999;
+$mainBtn: #a8b64f;
+$mainBtnHover: #899441;
+
+html[data-theme='light'] {
+  --mainText: #333;
+  --todoBorder: #e4e4e4;
+  --timerHeaderColor: #c4c4c4;
+  --timerBgColor: #f4f4f4;
+  --mainRed: #dc3e22;
+  --darkRed: #b7280f;
+  --backgroundColor: #fff;
+  --boxshadowColor: rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme='dark'] {
+  --mainText: #ffffffd0;
+  --todoBorder: #464646;
+  --timerHeaderColor: #aaa9a9;
+  --timerBgColor: #363636;
+  --mainRed: #dc3e22c8;
+  --darkRed: #b7280fa6;
+  --backgroundColor: #121212;
+  --boxshadowColor: rgba(255, 255, 255, 0.121);
+}
