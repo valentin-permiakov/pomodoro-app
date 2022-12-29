@@ -1,5 +1,3 @@
-@use '../../styles/variables' as vars;
-
 .timerHeaderContainer {
   display: flex;
   justify-content: space-between;
@@ -12,7 +10,7 @@
   .timerHeader,
   .pomodoroCount {
     margin: 0;
-    color: vars.$white;
+    color: #fff;
     font-size: 16px;
   }
 }
