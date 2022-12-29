@@ -18,7 +18,7 @@ const setupDevtool = () => {
 module.exports = {
   mode: NODE_ENV ? NODE_ENV : 'development',
   output: {
-    publicPath: '/',
+    publicPath: './',
     filename: 'index[contenthash].js',
     clean: true,
   },

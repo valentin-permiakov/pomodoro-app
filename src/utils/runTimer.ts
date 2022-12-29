@@ -15,6 +15,7 @@ import {
 import { ITodoItem } from '../store/todoSlice';
 import { createNotification } from './browserNotifications';
 
+const audio = new Audio(notification);
 export const runTimer = (
   timeOut: NodeJS.Timeout,
   dispatch: Dispatch<AnyAction>,
@@ -25,8 +26,6 @@ export const runTimer = (
   breakCount: number,
   taskList: ITodoItem[]
 ) => {
-  const audio = new Audio(notification);
-
   const taskLength = taskList[0]?.pomodoroNumber || 1;
   timeOut = setTimeout(() => {
     if (seconds > 0) {
