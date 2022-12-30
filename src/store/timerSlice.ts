@@ -66,6 +66,8 @@ if (new Date().toDateString() !== LSTimer.today) {
   initialState.isStarted = false;
   initialState.isPaused = false;
   initialState.isFirstStart = true;
+  initialState.currentMinutes = timerSettings.pomodoroMinutes;
+  initialState.currentSeconds = timerSettings.pomodoroSeconds;
 }
 
 export const timerSlice = createSlice({
