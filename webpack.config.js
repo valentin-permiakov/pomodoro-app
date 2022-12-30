@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 
 const GLOBAL_CSS_REGEXP = /\.global\.s?[ca]?ss$/;
@@ -18,7 +18,7 @@ const setupDevtool = () => {
 module.exports = {
   mode: NODE_ENV ? NODE_ENV : 'development',
   output: {
-    publicPath: './',
+    publicPath: IS_DEV ? '/' : './',
     filename: 'index[contenthash].js',
     clean: true,
   },
@@ -94,4 +94,4 @@ module.exports = {
     open: true,
     hot: true,
   },
-}
+};
