@@ -21,7 +21,7 @@ export const MenuItemsList = ({
 }: IMenuItemListProps) => {
   const dispatch = useDispatch();
   return (
-    <ul className={styles.menuList}>
+    <ul className={styles.menuList} onMouseLeave={closeList}>
       <li className={styles.menuItem}>
         <button
           className={styles.menuBtn}

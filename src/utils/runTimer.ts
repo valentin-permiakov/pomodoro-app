@@ -1,4 +1,5 @@
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import { clearTimeout, setTimeout } from 'worker-timers';
 import notification from '../assets/sounds/alert.mp3';
 
 import {
@@ -17,7 +18,7 @@ import { createNotification } from './browserNotifications';
 
 const audio = new Audio(notification);
 export const runTimer = (
-  timeOut: NodeJS.Timeout,
+  timeOut: number,
   dispatch: Dispatch<AnyAction>,
   isBreak: boolean,
   minutes: number,

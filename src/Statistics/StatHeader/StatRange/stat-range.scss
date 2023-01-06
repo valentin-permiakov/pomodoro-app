@@ -1,0 +1,29 @@
+@use '../../../styles/mixins';
+
+.rangeBtn {
+  @include mixins.btnReset;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 370px;
+  padding: 19px 15px;
+  background-color: var(--timerBgColor);
+  font-size: 16px;
+  line-height: 17px;
+  svg {
+    stroke: var(--mainRed);
+  }
+
+  &:hover {
+    color: var(--darkRed);
+    svg {
+      stroke: var(--darkRed);
+    }
+  }
+}
+
+.reversed {
+  span {
+    transform: rotate(180deg) translateY(-2px);
+  }
+}

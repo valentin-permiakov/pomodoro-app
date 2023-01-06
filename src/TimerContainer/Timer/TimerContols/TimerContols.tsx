@@ -1,4 +1,5 @@
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import { clearTimeout } from 'worker-timers';
 import React from 'react';
 import {
   changeBreakStatus,
@@ -14,9 +15,9 @@ import { ITodoItem, removeTodoItem } from '../../../store/todoSlice';
 import styles from './timer-contols.scss';
 
 interface ITimerControlsProps {
-  timeOut: NodeJS.Timeout;
+  timeOut: number;
   runTimer: (
-    timeOut: NodeJS.Timeout,
+    timeOut: number,
     dispatch: Dispatch<AnyAction>,
     isBreak: boolean,
     minutes: number,
@@ -52,7 +53,7 @@ export function TimerContols({
   dispatch,
 }: ITimerControlsProps) {
   const startTimer = () => {
-    clearTimeout(timeOut);
+    if (timeOut !== undefined) clearTimeout(timeOut);
     dispatch(changeTimerStatus());
     runTimer(
       timeOut,
@@ -73,13 +74,13 @@ export function TimerContols({
   };
 
   const pauseTimer = () => {
-    clearTimeout(timeOut);
+    if (timeOut !== undefined) clearTimeout(timeOut);
     dispatch(changeTimerStatus());
     dispatch(changePauseStatus());
   };
 
   const resetTimer = () => {
-    clearTimeout(timeOut);
+    if (timeOut !== undefined) clearTimeout(timeOut);
     dispatch(changeMinutes(initialState.pomodoroMinutes));
     dispatch(changeSeconds(initialState.pomodoroSeconds));
     if (isPaused) {
@@ -93,7 +94,7 @@ export function TimerContols({
   };
 
   const skipBreak = () => {
-    clearTimeout(timeOut);
+    if (timeOut !== undefined) clearTimeout(timeOut);
     dispatch(changePomodoroCount(pomodoroCount + 1));
     dispatch(changeMinutes(initialState.pomodoroMinutes));
     dispatch(changeSeconds(initialState.pomodoroSeconds));

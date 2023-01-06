@@ -7,18 +7,30 @@ import './styles/main.global.scss';
 import './styles/_variables.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from './store/store';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Statistics } from './Statistics';
 
 export const App = () => {
   const theme = useSelector((state: RootState) => state.colorTheme);
 
   document.documentElement.setAttribute('data-theme', theme);
   return (
-    <>
+    <BrowserRouter>
       <Header />
       <Content>
-        <TodoContainer />
-        <TimerContainer />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <TodoContainer />
+                <TimerContainer />
+              </>
+            }
+          />
+          <Route path="/statistscs" element={<Statistics />} />
+        </Routes>
       </Content>
-    </>
+    </BrowserRouter>
   );
 };

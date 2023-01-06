@@ -29,3 +29,13 @@ export const timerSettings: ITimerSettings = {
   breakCount: 1,
   isModalOpen: false,
 };
+
+export const DAYS = [
+  'Воскресенье',
+  'Понедельник',
+  'Вторник',
+  'Среда',
+  'Четверг',
+  'Пятница',
+  'Суббота',
+];

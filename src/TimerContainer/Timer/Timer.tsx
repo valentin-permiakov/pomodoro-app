@@ -15,7 +15,7 @@ interface ITimerProps {
   taskLength?: number;
 }
 
-let timeOut: NodeJS.Timeout;
+let timeOut: number;
 
 export function Timer({ taskName = 'Добавьте задание' }: ITimerProps) {
   const dispatch = useDispatch();
