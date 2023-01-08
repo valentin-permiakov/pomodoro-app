@@ -32,8 +32,6 @@ export const StatChart = () => {
     ],
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-
   return (
     <section className={styles.chartContainer}>
       <Bar data={chartData} options={CHART_OPTIONS} />

@@ -1,3 +1,4 @@
+import { getRelativePosition } from 'chart.js/helpers';
 import { chartTickCallback } from './utils/chartTickCallback';
 
 export interface ITimerSettings {
@@ -62,12 +63,10 @@ export const CHART_OPTIONS = {
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onHover: (e: any, item: string | any[]) => {
-    if (item.length) {
-      console.log(Data[item[0].index]);
-    } else {
-      console.log(item);
-    }
+  onHover: (e: any) => {
+    const chartPosition = getRelativePosition(e, e.chart);
+    const index = e.chart.scales.x.getValueForPixel(chartPosition.x);
+    console.log(Data[index]);
   },
 
   scales: {
@@ -76,6 +75,7 @@ export const CHART_OPTIONS = {
         callback: chartTickCallback,
         stepSize: 0.5,
       },
+      position: 'right' as const,
     },
   },
 };
