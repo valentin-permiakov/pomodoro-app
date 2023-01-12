@@ -56,6 +56,10 @@ export const todoSlice = createSlice({
       state[index].todoName = action.payload.text;
       localStorage.setItem('todoList', JSON.stringify(state));
     },
+    sortTodoList: (state, action: PayloadAction<ITodoItem[]>) => {
+      localStorage.setItem('todoList', JSON.stringify(action.payload));
+      return (state = action.payload);
+    },
   },
 });
 
@@ -66,6 +70,7 @@ export const {
   increasePomorodo,
   decreasePomorodo,
   changeTask,
+  sortTodoList,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;

@@ -78,7 +78,7 @@ export function TimerContols({
     if (isPaused) {
       startStamp = Date.now();
       const pauseMin = (startStamp - pauseStamp) / 1000 / 60;
-      dispatch(changePauseMin(Math.round(pauseMin)));
+      if (!isBreak) dispatch(changePauseMin(Math.round(pauseMin)));
       dispatch(changePauseStatus());
     }
     if (isFirstStart) {
