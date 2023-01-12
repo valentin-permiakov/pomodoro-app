@@ -36,6 +36,7 @@ export function Timer({ taskName = 'Добавьте задание' }: ITimerPr
   const pomodoroCount = useSelector(
     (state: RootState) => state.timer.pomodoroCount
   );
+  const pauseStamp = useSelector((state: RootState) => state.timer.pauseStamp);
 
   const taskList = useSelector((state: RootState) => state.todo);
 
@@ -51,6 +52,12 @@ export function Timer({ taskName = 'Добавьте задание' }: ITimerPr
         breakCount,
         taskList
       );
+
+      document.title = `${isBreak ? 'Break' : 'Pomodoro'} ${
+        minutes < 10 ? '0' + minutes : minutes
+      }:${seconds < 10 ? '0' + seconds : seconds}`;
+    } else {
+      document.title = 'Pomodoro Web App';
     }
   }, [minutes, seconds]);
 
@@ -74,6 +81,7 @@ export function Timer({ taskName = 'Добавьте задание' }: ITimerPr
         breakCount={breakCount}
         taskList={taskList}
         dispatch={dispatch}
+        pauseStamp={pauseStamp}
       />
       {isModalOpened && (
         <DeleteTask

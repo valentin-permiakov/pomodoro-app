@@ -3,6 +3,7 @@ import timerSlice from './timerSlice';
 import { todoSlice } from './todoSlice';
 import { colorThemeSlice } from './colorThemeSlice';
 import { rangeChoiceSlice } from './rangeChoiceSlice';
+import { statisticSlice } from './statisticSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     todo: todoSlice.reducer,
     colorTheme: colorThemeSlice.reducer,
     rangeChoice: rangeChoiceSlice.reducer,
+    statistic: statisticSlice.reducer,
   },
 });
 

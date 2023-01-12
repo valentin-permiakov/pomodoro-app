@@ -1,6 +1,7 @@
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { clearTimeout, setTimeout } from 'worker-timers';
 import notification from '../assets/sounds/alert.mp3';
+import { changeBreakMin, changePomodoroMin } from '../store/statisticSlice';
 
 import {
   changeBreakCount,
@@ -40,6 +41,15 @@ export const runTimer = (
         clearTimeout(timeOut);
         audio.play();
         createNotification(isBreak ? 'Break' : 'Pomodoro');
+        dispatch(
+          !isBreak
+            ? changePomodoroMin()
+            : changeBreakMin(
+                breakCount % 4 === 0
+                  ? initialState.bigBreakMinutes
+                  : initialState.breakMinutes
+              )
+        );
         dispatch(changeBreakStatus());
         dispatch(changeTimerStatus());
         dispatch(changeFirstStartStatus());

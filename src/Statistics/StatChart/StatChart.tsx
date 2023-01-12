@@ -8,29 +8,43 @@ import {
 import { Bar } from 'react-chartjs-2';
 import styles from './stat-chart.scss';
 import { CHART_OPTIONS, DAYS } from '../../globalConst';
+import { getRelativePosition } from 'chart.js/helpers';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store/store';
+import { changeDayIndex } from '../../store/rangeChoiceSlice';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 export const StatChart = () => {
-  const Data: { date: string; pomodoro: number; break: number }[] = [
-    { date: 'Fri Dec 30 2022', pomodoro: 110, break: 10 },
-    { date: 'Sat Dec 31 2022', pomodoro: 20, break: 10 },
-    { date: 'Sun Jan 01 2023', pomodoro: 20, break: 10 },
-    { date: 'Mon Jan 02 2023', pomodoro: 0, break: 10 },
-    { date: 'Tue Jan 03 2023', pomodoro: 50, break: 10 },
-    { date: 'Wed Jan 04 2023', pomodoro: 20, break: 10 },
-    { date: 'Thu Jan 05 2023', pomodoro: 250, break: 45 },
-  ];
-
+  const stats = useSelector((state: RootState) => state.statistic);
+  const weekIndex = useSelector(
+    (state: RootState) => state.rangeChoice.weekIndex
+  );
+  const dispatch = useDispatch();
   const chartData = {
-    labels: Data.map((data) => DAYS[new Date(data.date).getDay()]),
+    labels: stats
+      .slice(weekIndex, weekIndex + 7)
+      .map((data) => DAYS[new Date(data.date).getDay()]),
     datasets: [
       {
-        data: Data.map((data) => data.pomodoro / 60),
+        data: stats
+          .slice(weekIndex, weekIndex + 7)
+          .map((data) => data.pomodoroMin / 60),
         backgroundColor: '#EA8979',
       },
     ],
   };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const hoverHandler = (e: any) => {
+    const chartPosition = getRelativePosition(e, e.chart);
+    const index = e.chart.scales.x.getValueForPixel(chartPosition.x);
+    if (index === -1) return;
+
+    dispatch(changeDayIndex(index));
+  };
+
+  CHART_OPTIONS.onHover = hoverHandler;
 
   return (
     <section className={styles.chartContainer}>

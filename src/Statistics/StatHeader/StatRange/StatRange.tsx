@@ -9,14 +9,27 @@ import { EIcons, Icon } from '../../../icons';
 import { RangeList } from './RangeList/RangeList';
 
 export function StatRange() {
-  const range = useSelector((state: RootState) => state.rangeChoice);
+  const range = useSelector((state: RootState) => state.rangeChoice.text);
   const { btnRef, top, left } = useCoordinates(0, 370);
   const [isOpened, setIsOpened] = useState(false);
   const dispatch = useDispatch();
 
   const handleClick = (e: MouseEvent<HTMLLIElement>) => {
-    if (e.currentTarget.dataset.type)
-      dispatch(changeRange(e.currentTarget.dataset.type));
+    if (e.currentTarget.dataset.type) {
+      const weekIndex =
+        e.currentTarget.dataset.type === 'Эта неделя'
+          ? 0
+          : e.currentTarget.dataset.type === 'Прошлая неделя'
+          ? 7
+          : 14;
+      dispatch(
+        changeRange({
+          text: e.currentTarget.dataset.type,
+          weekIndex,
+          dayIndex: 0,
+        })
+      );
+    }
     setIsOpened(false);
   };
 

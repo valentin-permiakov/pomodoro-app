@@ -6,6 +6,7 @@ import { EIcons, Icon } from '../icons/Icon';
 import { useDispatch } from 'react-redux';
 import { changePomodoroCount } from '../store/timerSlice';
 import { increasePomorodo, removeTodoItem } from '../store/todoSlice';
+import { changeFinishedTaskCount } from '../store/statisticSlice';
 
 interface IDeleteTaskProps {
   onClose: () => void;
@@ -21,6 +22,7 @@ export function DeleteTask({ onClose, timestamp }: IDeleteTaskProps) {
     onClose();
     dispatch(changePomodoroCount(0));
     dispatch(removeTodoItem());
+    dispatch(changeFinishedTaskCount());
   };
 
   useEffect(() => {

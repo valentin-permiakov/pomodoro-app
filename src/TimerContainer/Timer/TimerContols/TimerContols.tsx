@@ -5,6 +5,7 @@ import {
   changeBreakStatus,
   changeFirstStartStatus,
   changeMinutes,
+  changePauseStamp,
   changePauseStatus,
   changePomodoroCount,
   changeSeconds,
@@ -13,6 +14,11 @@ import {
 } from '../../../store/timerSlice';
 import { ITodoItem, removeTodoItem } from '../../../store/todoSlice';
 import styles from './timer-contols.scss';
+import {
+  changeFinishedTaskCount,
+  changePauseMin,
+  changeStopCount,
+} from '../../../store/statisticSlice';
 
 interface ITimerControlsProps {
   timeOut: number;
@@ -36,6 +42,7 @@ interface ITimerControlsProps {
   breakCount: number;
   taskList: ITodoItem[];
   dispatch: Dispatch<AnyAction>;
+  pauseStamp: number;
 }
 
 export function TimerContols({
@@ -51,7 +58,10 @@ export function TimerContols({
   breakCount,
   taskList,
   dispatch,
+  pauseStamp,
 }: ITimerControlsProps) {
+  let startStamp: number;
+
   const startTimer = () => {
     if (timeOut !== undefined) clearTimeout(timeOut);
     dispatch(changeTimerStatus());
@@ -65,7 +75,12 @@ export function TimerContols({
       breakCount,
       taskList
     );
-    if (isPaused) dispatch(changePauseStatus());
+    if (isPaused) {
+      startStamp = Date.now();
+      const pauseMin = (startStamp - pauseStamp) / 1000 / 60;
+      dispatch(changePauseMin(Math.round(pauseMin)));
+      dispatch(changePauseStatus());
+    }
     if (isFirstStart) {
       dispatch(changeFirstStartStatus());
       const initialStartTime = Date.now();
@@ -74,19 +89,29 @@ export function TimerContols({
   };
 
   const pauseTimer = () => {
-    if (timeOut !== undefined) clearTimeout(timeOut);
+    if (timeOut !== undefined) {
+      clearTimeout(timeOut);
+    }
+    dispatch(changePauseStamp(Date.now()));
     dispatch(changeTimerStatus());
     dispatch(changePauseStatus());
   };
 
   const resetTimer = () => {
     if (timeOut !== undefined) clearTimeout(timeOut);
+    setTimeout(() => {
+      dispatch(changeMinutes(initialState.pomodoroMinutes));
+      dispatch(changeSeconds(initialState.pomodoroSeconds));
+      dispatch(changeStopCount());
+    }, 900);
     dispatch(changeMinutes(initialState.pomodoroMinutes));
     dispatch(changeSeconds(initialState.pomodoroSeconds));
     if (isPaused) {
       // resets isPaused state to default
       dispatch(changePauseStatus());
       dispatch(changeFirstStartStatus());
+      dispatch(changeMinutes(initialState.pomodoroMinutes));
+      dispatch(changeSeconds(initialState.pomodoroSeconds));
     }
     if (!isStarted) return;
     dispatch(changeTimerStatus());
@@ -114,6 +139,7 @@ export function TimerContols({
     resetTimer();
     dispatch(changePomodoroCount(1));
     dispatch(removeTodoItem());
+    dispatch(changeFinishedTaskCount());
   };
 
   return (
