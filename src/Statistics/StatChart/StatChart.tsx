@@ -39,7 +39,7 @@ export const StatChart = () => {
   const hoverHandler = (e: any) => {
     const chartPosition = getRelativePosition(e, e.chart);
     const index = e.chart.scales.x.getValueForPixel(chartPosition.x);
-    if (index === -1) return;
+    if (index === -1 || index === 7) return;
 
     dispatch(changeDayIndex(index));
   };
