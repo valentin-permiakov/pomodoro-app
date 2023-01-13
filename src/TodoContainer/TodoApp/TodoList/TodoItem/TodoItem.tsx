@@ -10,20 +10,24 @@ interface ITodoItemProps {
   pomodoroNumber: number;
   timestamp: number;
   index: number;
+  isDragging: boolean;
   onDragStart: (_event: React.DragEvent<HTMLLIElement>, index: number) => void;
   onDragEnter: (_event: React.DragEvent<HTMLLIElement>, index: number) => void;
   onDragEnd: (_event: React.DragEvent<HTMLLIElement>) => void;
+  getStyles: (index: number) => React.CSSProperties;
 }
 
-export function TodoItem({
+export const TodoItem = ({
   name,
   pomodoroNumber = 1,
   timestamp,
   index,
+  isDragging,
   onDragStart,
   onDragEnter,
   onDragEnd,
-}: ITodoItemProps) {
+  getStyles,
+}: ITodoItemProps) => {
   const [isEdit, setIsEdit] = useState(false);
   const refText = useRef<HTMLInputElement>(null);
   const [taskNameValue, setTaskNameValue] = useState(name);
@@ -44,7 +48,8 @@ export function TodoItem({
   return (
     <li
       className={styles.todoItem}
-      draggable
+      draggable={isEdit ? false : true}
+      style={isDragging ? getStyles(index) : {}}
       onDragStart={(e: React.DragEvent<HTMLLIElement>) => onDragStart(e, index)}
       onDragEnter={(e: React.DragEvent<HTMLLIElement>) => onDragEnter(e, index)}
       onDragEnd={(e: React.DragEvent<HTMLLIElement>) => onDragEnd(e)}
@@ -73,4 +78,4 @@ export function TodoItem({
       <TodoMenu timestamp={timestamp} openEdit={() => setIsEdit(!isEdit)} />
     </li>
   );
-}
+};

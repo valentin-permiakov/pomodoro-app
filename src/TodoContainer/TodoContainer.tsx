@@ -5,7 +5,7 @@ import { TodoApp } from './TodoApp/TodoApp';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
-export function TodoContainer() {
+export const TodoContainer = () => {
   const todoList = useSelector((state: RootState) => state.todo);
   const [isInstructions, setIsInstructions] = useState(true);
   useEffect(() => {
@@ -17,4 +17,4 @@ export function TodoContainer() {
       <TodoApp />
     </section>
   );
-}
+};

@@ -8,7 +8,7 @@ import { Dropdown } from '../../../Dropdown';
 import { EIcons, Icon } from '../../../icons';
 import { RangeList } from './RangeList/RangeList';
 
-export function StatRange() {
+export const StatRange = () => {
   const range = useSelector((state: RootState) => state.rangeChoice.text);
   const { btnRef, top, left } = useCoordinates(0, 370);
   const [isOpened, setIsOpened] = useState(false);
@@ -53,4 +53,4 @@ export function StatRange() {
       )}
     </div>
   );
-}
+};

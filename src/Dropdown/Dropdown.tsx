@@ -8,7 +8,7 @@ interface IDropdownProps {
   left: number;
 }
 
-export function Dropdown({ children, top, left }: IDropdownProps) {
+export const Dropdown = ({ children, top, left }: IDropdownProps) => {
   const node = document.getElementById('dropdown-root');
 
   if (!node) return null;
@@ -25,4 +25,4 @@ export function Dropdown({ children, top, left }: IDropdownProps) {
     </div>,
     node
   );
-}
+};

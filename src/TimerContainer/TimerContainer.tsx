@@ -5,7 +5,7 @@ import styles from './timer-container.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
-export function TimerContainer() {
+export const TimerContainer = () => {
   const taskName = useSelector((state: RootState) => state.todo[0]?.todoName);
   return (
     <section className={styles.container}>
@@ -13,4 +13,4 @@ export function TimerContainer() {
       <Timer taskName={taskName} />
     </section>
   );
-}
+};

@@ -45,7 +45,7 @@ interface ITimerControlsProps {
   pauseStamp: number;
 }
 
-export function TimerContols({
+export const TimerContols = ({
   timeOut,
   runTimer,
   isStarted,
@@ -59,7 +59,7 @@ export function TimerContols({
   taskList,
   dispatch,
   pauseStamp,
-}: ITimerControlsProps) {
+}: ITimerControlsProps) => {
   let startStamp: number;
 
   const startTimer = () => {
@@ -83,8 +83,6 @@ export function TimerContols({
     }
     if (isFirstStart) {
       dispatch(changeFirstStartStatus());
-      const initialStartTime = Date.now();
-      console.log(initialStartTime);
     }
   };
 
@@ -158,4 +156,4 @@ export function TimerContols({
       </button>
     </div>
   );
-}
+};

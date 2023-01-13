@@ -35,7 +35,7 @@ export const runTimer = (
     }
     if (seconds === 0) {
       if (minutes === 0) {
-        if (pomodoroCount >= taskLength && taskList.length !== 0) {
+        if (pomodoroCount >= taskLength && taskList.length !== 0 && !isBreak) {
           dispatch(changeIsModalOpenStatus(true));
         }
         clearTimeout(timeOut);

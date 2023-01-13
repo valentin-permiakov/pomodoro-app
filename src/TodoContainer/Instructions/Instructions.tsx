@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { askPermission } from '../../utils/browserNotifications';
 import styles from './instructions.scss';
 
-export function Instructions() {
+export const Instructions = () => {
   const [isGranted, setIsGranted] = useState(
     Notification.permission === 'granted'
   );
@@ -43,4 +43,4 @@ export function Instructions() {
       </button>
     </div>
   );
-}
+};

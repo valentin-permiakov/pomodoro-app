@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { formatWorkTime } from '../../utils/formatWorkTime';
 
-export function TodoApp() {
+export const TodoApp = () => {
   const todoList = useSelector((state: RootState) => state.todo);
   const pomorodoMinutes =
     useSelector((state: RootState) => state.timer.pomodoroMinutes) * 60;
@@ -26,4 +26,4 @@ export function TodoApp() {
       )}
     </div>
   );
-}
+};

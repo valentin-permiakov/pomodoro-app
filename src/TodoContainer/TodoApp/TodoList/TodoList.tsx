@@ -1,14 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './todolist.scss';
 import { TodoItem } from './TodoItem/TodoItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../store/store';
 import { sortTodoList } from '../../../store/todoSlice';
 
-export function TodoList() {
+export const TodoList = () => {
   const todoList = useSelector((state: RootState) => state.todo);
+  const theme = useSelector((state: RootState) => state.colorTheme);
   const dragItemRef = useRef<unknown>(null);
   const dragOverItemRef = useRef<unknown>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const dispatch = useDispatch();
 
   const onDragStart = (
@@ -16,14 +18,25 @@ export function TodoList() {
     index: number
   ) => {
     dragItemRef.current = index;
+    setTimeout(() => {
+      setIsDragging(true);
+    }, 0);
   };
 
-  const onDragEnter = (
-    _event: React.DragEvent<HTMLLIElement>,
-    index: number
-  ) => {
+  function onDragEnter(_event: React.DragEvent<HTMLLIElement>, index: number) {
     dragOverItemRef.current = index;
-  };
+    const todoListCopy = [...todoList];
+    if (
+      typeof dragItemRef.current === 'number' &&
+      typeof dragOverItemRef.current === 'number'
+    ) {
+      const dragItemContent = todoListCopy.splice(dragItemRef.current, 1)[0];
+      todoListCopy.splice(dragOverItemRef.current, 0, dragItemContent);
+      dispatch(sortTodoList(todoListCopy));
+
+      dragItemRef.current = dragOverItemRef.current;
+    }
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onDragEnd = (_event: React.DragEvent<HTMLLIElement>) => {
@@ -38,7 +51,16 @@ export function TodoList() {
       dragItemRef.current = null;
       dragOverItemRef.current = null;
       dispatch(sortTodoList(todoListCopy));
+      setIsDragging(false);
     }
+  };
+
+  const getStyles = (index: number) => {
+    const currentItem = dragItemRef.current;
+    if (currentItem === index) {
+      return { backgroundColor: `${theme === 'dark' ? '#363636' : '#c4c4c4'}` };
+    }
+    return {};
   };
 
   return (
@@ -52,9 +74,11 @@ export function TodoList() {
           onDragStart={onDragStart}
           onDragEnter={onDragEnter}
           onDragEnd={onDragEnd}
+          getStyles={getStyles}
           index={index}
+          isDragging={isDragging}
         />
       ))}
     </ul>
   );
-}
+};

@@ -10,7 +10,7 @@ interface ITodoMenuProps {
   openEdit: () => void;
 }
 
-export function TodoMenu({ timestamp, openEdit }: ITodoMenuProps) {
+export const TodoMenu = ({ timestamp, openEdit }: ITodoMenuProps) => {
   const { btnRef, top, left } = useCoordinates(10, -35);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -38,4 +38,4 @@ export function TodoMenu({ timestamp, openEdit }: ITodoMenuProps) {
       )}
     </div>
   );
-}
+};

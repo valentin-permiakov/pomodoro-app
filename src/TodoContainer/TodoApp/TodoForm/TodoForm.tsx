@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addTodoItem } from '../../../store/todoSlice';
 import { changePomodoroCount } from '../../../store/timerSlice';
 
-export function TodoForm() {
+export const TodoForm = () => {
   const refText = useRef<HTMLInputElement>(null);
   const refNum = useRef<HTMLInputElement>(null);
   const [taskNameValue, setTaskNameValue] = useState('');
@@ -75,4 +75,4 @@ export function TodoForm() {
       </button>
     </form>
   );
-}
+};

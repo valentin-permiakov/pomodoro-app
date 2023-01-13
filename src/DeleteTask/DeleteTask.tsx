@@ -13,7 +13,7 @@ interface IDeleteTaskProps {
   timestamp: number;
 }
 
-export function DeleteTask({ onClose, timestamp }: IDeleteTaskProps) {
+export const DeleteTask = ({ onClose, timestamp }: IDeleteTaskProps) => {
   const refModal = useRef<HTMLDivElement>(null);
   const refContent = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
@@ -62,4 +62,4 @@ export function DeleteTask({ onClose, timestamp }: IDeleteTaskProps) {
     </div>,
     node
   );
-}
+};
