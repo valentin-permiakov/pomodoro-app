@@ -20,7 +20,7 @@ export const App = () => {
       <Content>
         <Routes>
           <Route
-            path="/"
+            path="/pomodoro-app"
             element={
               <>
                 <TodoContainer />
@@ -28,7 +28,7 @@ export const App = () => {
               </>
             }
           />
-          <Route path="/statistscs" element={<Statistics />} />
+          <Route path="pomodoro-app/statistscs" element={<Statistics />} />
         </Routes>
       </Content>
     </BrowserRouter>

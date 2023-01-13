@@ -11,7 +11,7 @@ export const Header = () => {
         <Logo />
         <div className={styles.containerRight}>
           <ThemeSwitch />
-          <Link to="/statistscs" className={styles.statsLink}>
+          <Link to="pomodoro-app/statistscs" className={styles.statsLink}>
             <Icon name={EIcons.statsIcon} size={24} />
             Статистика
           </Link>
