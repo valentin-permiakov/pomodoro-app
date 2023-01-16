@@ -1,0 +1,24 @@
+.workContainer {
+  width: 100%;
+  padding: 25px;
+  padding-bottom: 132px;
+  background-color: var(--timerBgColor);
+
+  .workHeader {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 24px;
+    line-height: 33px;
+  }
+
+  .workDescription {
+    margin: 0;
+    width: 85%;
+    font-size: 16px;
+    line-height: 28px;
+
+    .workTime {
+      color: var(--mainRed);
+    }
+  }
+}

@@ -15,9 +15,9 @@ interface ITimerProps {
   taskLength?: number;
 }
 
-let timeOut: NodeJS.Timeout;
+let timeOut: number;
 
-export function Timer({ taskName = 'Добавьте задание' }: ITimerProps) {
+export const Timer = ({ taskName = 'Add a task' }: ITimerProps) => {
   const dispatch = useDispatch();
 
   const isStarted = useSelector((state: RootState) => state.timer.isStarted);
@@ -36,6 +36,7 @@ export function Timer({ taskName = 'Добавьте задание' }: ITimerPr
   const pomodoroCount = useSelector(
     (state: RootState) => state.timer.pomodoroCount
   );
+  const pauseStamp = useSelector((state: RootState) => state.timer.pauseStamp);
 
   const taskList = useSelector((state: RootState) => state.todo);
 
@@ -51,6 +52,12 @@ export function Timer({ taskName = 'Добавьте задание' }: ITimerPr
         breakCount,
         taskList
       );
+
+      document.title = `${isBreak ? 'Break' : 'Pomodoro'} ${
+        minutes < 10 ? '0' + minutes : minutes
+      }:${seconds < 10 ? '0' + seconds : seconds}`;
+    } else {
+      document.title = 'Pomodoro Web App';
     }
   }, [minutes, seconds]);
 
@@ -58,7 +65,7 @@ export function Timer({ taskName = 'Добавьте задание' }: ITimerPr
     <div className={styles.timer}>
       <Countdown minutes={minutes} seconds={seconds} isPaused={isPaused} />
       <h3 className={styles.task}>
-        <span>Задача - </span>
+        <span>Task - </span>
         {taskName}
       </h3>
       <TimerContols
@@ -74,6 +81,7 @@ export function Timer({ taskName = 'Добавьте задание' }: ITimerPr
         breakCount={breakCount}
         taskList={taskList}
         dispatch={dispatch}
+        pauseStamp={pauseStamp}
       />
       {isModalOpened && (
         <DeleteTask
@@ -86,4 +94,4 @@ export function Timer({ taskName = 'Добавьте задание' }: ITimerPr
       )}
     </div>
   );
-}
+};

@@ -11,3 +11,39 @@
   justify-content: space-between;
   margin: 0 auto;
 }
+
+.containerRight {
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-right: 30px;
+  }
+
+  .statsLink {
+    display: flex;
+    align-items: center;
+    color: var(--mainRed);
+    font-size: 16px;
+
+    span {
+      margin-right: 5px;
+    }
+
+    g {
+      path {
+        fill: var(--mainRed);
+      }
+    }
+
+    &:hover {
+      color: var(--darkRed);
+
+      g {
+        path {
+          fill: var(--darkRed);
+        }
+      }
+    }
+  }
+}

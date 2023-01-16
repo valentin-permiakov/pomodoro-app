@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -9,7 +8,9 @@ const root = document.getElementById('react-root');
 
 if (root)
   createRoot(root).render(
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
   );

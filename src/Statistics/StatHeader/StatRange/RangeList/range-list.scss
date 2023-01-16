@@ -1,0 +1,20 @@
+@use '../../../../styles/mixins';
+
+.rangeList {
+  @include mixins.listReset;
+  width: 370px;
+  background-color: var(--timerBgColor);
+  box-shadow: 0 5px 15px var(--boxshadowColor);
+
+  .rangeItem {
+    padding: 19px 15px;
+    border-top: 1px solid var(--todoBorder);
+    font-size: 16px;
+    line-height: 17px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--darkRed);
+    }
+  }
+}

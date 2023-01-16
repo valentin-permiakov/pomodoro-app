@@ -7,7 +7,7 @@ interface ICountdownProps {
   isPaused: boolean;
 }
 
-export function Countdown({ minutes, seconds, isPaused }: ICountdownProps) {
+export const Countdown = ({ minutes, seconds, isPaused }: ICountdownProps) => {
   return (
     <p
       className={`${styles.countdown} ${
@@ -18,4 +18,4 @@ export function Countdown({ minutes, seconds, isPaused }: ICountdownProps) {
       <span>{seconds < 10 ? '0' + seconds : seconds}</span>
     </p>
   );
-}
+};

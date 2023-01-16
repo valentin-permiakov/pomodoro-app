@@ -6,13 +6,14 @@ import { EIcons, Icon } from '../icons/Icon';
 import { useDispatch } from 'react-redux';
 import { changePomodoroCount } from '../store/timerSlice';
 import { increasePomorodo, removeTodoItem } from '../store/todoSlice';
+import { changeFinishedTaskCount } from '../store/statisticSlice';
 
 interface IDeleteTaskProps {
   onClose: () => void;
   timestamp: number;
 }
 
-export function DeleteTask({ onClose, timestamp }: IDeleteTaskProps) {
+export const DeleteTask = ({ onClose, timestamp }: IDeleteTaskProps) => {
   const refModal = useRef<HTMLDivElement>(null);
   const refContent = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export function DeleteTask({ onClose, timestamp }: IDeleteTaskProps) {
     onClose();
     dispatch(changePomodoroCount(0));
     dispatch(removeTodoItem());
+    dispatch(changeFinishedTaskCount());
   };
 
   useEffect(() => {
@@ -46,12 +48,12 @@ export function DeleteTask({ onClose, timestamp }: IDeleteTaskProps) {
   return ReactDOM.createPortal(
     <div className={styles.modal} ref={refModal}>
       <div className={styles.content} ref={refContent}>
-        <h3 className={styles.heading}>Удалить задачу?</h3>
+        <h3 className={styles.heading}>Do you want to delete the task?</h3>
         <button className={styles.deleteBtn} onClick={handleDelete}>
-          Удалить
+          Delete
         </button>
         <button className={styles.cancelBtn} onClick={onClose}>
-          Отмена
+          Cancel
         </button>
         <button className={styles.closeBtn} onClick={onClose}>
           <Icon name={EIcons.closeIcon} size={24} />
@@ -60,4 +62,4 @@ export function DeleteTask({ onClose, timestamp }: IDeleteTaskProps) {
     </div>,
     node
   );
-}
+};

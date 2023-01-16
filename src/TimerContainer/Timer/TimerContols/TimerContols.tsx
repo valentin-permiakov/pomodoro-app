@@ -1,9 +1,11 @@
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import { clearTimeout } from 'worker-timers';
 import React from 'react';
 import {
   changeBreakStatus,
   changeFirstStartStatus,
   changeMinutes,
+  changePauseStamp,
   changePauseStatus,
   changePomodoroCount,
   changeSeconds,
@@ -12,11 +14,16 @@ import {
 } from '../../../store/timerSlice';
 import { ITodoItem, removeTodoItem } from '../../../store/todoSlice';
 import styles from './timer-contols.scss';
+import {
+  changeFinishedTaskCount,
+  changePauseMin,
+  changeStopCount,
+} from '../../../store/statisticSlice';
 
 interface ITimerControlsProps {
-  timeOut: NodeJS.Timeout;
+  timeOut: number;
   runTimer: (
-    timeOut: NodeJS.Timeout,
+    timeOut: number,
     dispatch: Dispatch<AnyAction>,
     isBreak: boolean,
     minutes: number,
@@ -35,9 +42,10 @@ interface ITimerControlsProps {
   breakCount: number;
   taskList: ITodoItem[];
   dispatch: Dispatch<AnyAction>;
+  pauseStamp: number;
 }
 
-export function TimerContols({
+export const TimerContols = ({
   timeOut,
   runTimer,
   isStarted,
@@ -50,9 +58,12 @@ export function TimerContols({
   breakCount,
   taskList,
   dispatch,
-}: ITimerControlsProps) {
+  pauseStamp,
+}: ITimerControlsProps) => {
+  let startStamp: number;
+
   const startTimer = () => {
-    clearTimeout(timeOut);
+    if (timeOut !== undefined) clearTimeout(timeOut);
     dispatch(changeTimerStatus());
     runTimer(
       timeOut,
@@ -64,28 +75,41 @@ export function TimerContols({
       breakCount,
       taskList
     );
-    if (isPaused) dispatch(changePauseStatus());
+    if (isPaused) {
+      startStamp = Date.now();
+      const pauseMin = (startStamp - pauseStamp) / 1000 / 60;
+      if (!isBreak) dispatch(changePauseMin(Math.round(pauseMin)));
+      dispatch(changePauseStatus());
+    }
     if (isFirstStart) {
       dispatch(changeFirstStartStatus());
-      const initialStartTime = Date.now();
-      console.log(initialStartTime);
     }
   };
 
   const pauseTimer = () => {
-    clearTimeout(timeOut);
+    if (timeOut !== undefined) {
+      clearTimeout(timeOut);
+    }
+    dispatch(changePauseStamp(Date.now()));
     dispatch(changeTimerStatus());
     dispatch(changePauseStatus());
   };
 
   const resetTimer = () => {
-    clearTimeout(timeOut);
+    if (timeOut !== undefined) clearTimeout(timeOut);
+    setTimeout(() => {
+      dispatch(changeMinutes(initialState.pomodoroMinutes));
+      dispatch(changeSeconds(initialState.pomodoroSeconds));
+      dispatch(changeStopCount());
+    }, 900);
     dispatch(changeMinutes(initialState.pomodoroMinutes));
     dispatch(changeSeconds(initialState.pomodoroSeconds));
     if (isPaused) {
       // resets isPaused state to default
       dispatch(changePauseStatus());
       dispatch(changeFirstStartStatus());
+      dispatch(changeMinutes(initialState.pomodoroMinutes));
+      dispatch(changeSeconds(initialState.pomodoroSeconds));
     }
     if (!isStarted) return;
     dispatch(changeTimerStatus());
@@ -93,7 +117,7 @@ export function TimerContols({
   };
 
   const skipBreak = () => {
-    clearTimeout(timeOut);
+    if (timeOut !== undefined) clearTimeout(timeOut);
     dispatch(changePomodoroCount(pomodoroCount + 1));
     dispatch(changeMinutes(initialState.pomodoroMinutes));
     dispatch(changeSeconds(initialState.pomodoroSeconds));
@@ -113,6 +137,7 @@ export function TimerContols({
     resetTimer();
     dispatch(changePomodoroCount(1));
     dispatch(removeTodoItem());
+    dispatch(changeFinishedTaskCount());
   };
 
   return (
@@ -121,14 +146,14 @@ export function TimerContols({
         className={styles.startBtn}
         onClick={!isStarted ? startTimer : pauseTimer}
       >
-        {isStarted ? 'Пауза' : isPaused ? 'Продолжить' : 'Старт'}
+        {isStarted ? 'Pause' : isPaused ? 'Continue' : 'Start'}
       </button>
       <button
         className={`${styles.stopBtn} ${isPaused ? styles.endTaskBtn : ''}`}
         onClick={isBreak ? skipBreak : isPaused ? deleteTask : resetTimer}
       >
-        {isBreak ? 'Пропустить' : isPaused ? 'Сделано' : 'Стоп'}
+        {isBreak ? 'Skip Break' : isPaused ? 'Done' : 'Stop'}
       </button>
     </div>
   );
-}
+};

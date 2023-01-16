@@ -7,9 +7,7 @@ interface ITimerHeaderProps {
   taskName?: string;
 }
 
-export function TimerHeader({
-  taskName = 'Добавьте задание',
-}: ITimerHeaderProps) {
+export const TimerHeader = ({ taskName = 'Add a task' }: ITimerHeaderProps) => {
   const isPaused = useSelector((state: RootState) => state.timer.isPaused);
   const isBreak = useSelector((state: RootState) => state.timer.isBreak);
   const pomodoroCount = useSelector(
@@ -24,8 +22,8 @@ export function TimerHeader({
     >
       <h2 className={styles.timerHeader}>{taskName}</h2>
       <span className={styles.pomodoroCount}>
-        {isBreak ? `Перерыв ${breakCount - 1}` : `Помидор ${pomodoroCount}`}
+        {isBreak ? `Break ${breakCount - 1}` : `Pomodoro ${pomodoroCount}`}
       </span>
     </div>
   );
-}
+};

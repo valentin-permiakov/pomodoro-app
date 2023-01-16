@@ -1,3 +1,5 @@
+import { chartTickCallback } from './utils/chartTickCallback';
+
 export interface ITimerSettings {
   isFirstStart: boolean;
   isStarted: boolean;
@@ -28,4 +30,41 @@ export const timerSettings: ITimerSettings = {
   pomodoroCount: 1,
   breakCount: 1,
   isModalOpen: false,
+};
+
+export const DAYS = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
+
+export const CHART_OPTIONS = {
+  layout: {
+    padding: {
+      top: 30,
+      bottom: 30,
+      left: 20,
+      right: 20,
+    },
+  },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onHover: (e: any) => {
+    console.log(e);
+  },
+  scales: {
+    y: {
+      ticks: {
+        callback: chartTickCallback,
+        stepSize: 0.5,
+      },
+      position: 'right' as const,
+    },
+    x: {
+      reverse: true,
+    },
+  },
 };

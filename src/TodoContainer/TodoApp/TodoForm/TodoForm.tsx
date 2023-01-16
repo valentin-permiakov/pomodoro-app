@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addTodoItem } from '../../../store/todoSlice';
 import { changePomodoroCount } from '../../../store/timerSlice';
 
-export function TodoForm() {
+export const TodoForm = () => {
   const refText = useRef<HTMLInputElement>(null);
   const refNum = useRef<HTMLInputElement>(null);
   const [taskNameValue, setTaskNameValue] = useState('');
@@ -37,13 +37,13 @@ export function TodoForm() {
     <form action="" className={styles.todoForm} onSubmit={handleSubmit}>
       <div className={styles.inputContainer}>
         <label className={styles.formLabel} htmlFor="todo-name">
-          Название задачи
+          Task name
         </label>
         <input
           type="text"
           className={`${styles.todoInput} ${styles.todoName}`}
           ref={refText}
-          placeholder="Название задачи"
+          placeholder="Task name"
           value={taskNameValue}
           onChange={handleTextChange}
           id="todo-name"
@@ -52,13 +52,13 @@ export function TodoForm() {
 
       <div className={styles.inputContainer}>
         <label className={styles.formLabel} htmlFor="todo-number">
-          Количество помидор
+          Pomodoro number
         </label>
         <input
           type="number"
           className={`${styles.todoInput} ${styles.todoNumber}`}
           ref={refNum}
-          placeholder="Количество помидор"
+          placeholder="Pomodoro number"
           value={taskPomodoroNumber}
           onChange={handleNumChange}
           id="todo-number"
@@ -71,8 +71,8 @@ export function TodoForm() {
           taskNameValue.length > 0 && taskPomodoroNumber > 0 ? false : true
         }
       >
-        Добавить
+        Add task
       </button>
     </form>
   );
-}
+};

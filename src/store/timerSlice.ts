@@ -5,6 +5,7 @@ interface IInitialState extends ITimerSettings {
   currentMinutes: number;
   currentSeconds: number;
   today: string;
+  pauseStamp: number;
 }
 if (!localStorage.getItem('timer'))
   localStorage.setItem(
@@ -13,6 +14,7 @@ if (!localStorage.getItem('timer'))
       ...timerSettings,
       currentMinutes: timerSettings.pomodoroMinutes,
       currentSeconds: timerSettings.pomodoroSeconds,
+      pauseStamp: 0,
     })
   );
 
@@ -35,6 +37,7 @@ export const initialState: IInitialState = {
   currentMinutes: timerSettings.pomodoroMinutes,
   currentSeconds: timerSettings.pomodoroSeconds,
   today: new Date().toDateString(),
+  pauseStamp: LSTimer.pauseStamp,
 };
 
 if (initialState.isBreak) {
@@ -66,6 +69,8 @@ if (new Date().toDateString() !== LSTimer.today) {
   initialState.isStarted = false;
   initialState.isPaused = false;
   initialState.isFirstStart = true;
+  initialState.currentMinutes = timerSettings.pomodoroMinutes;
+  initialState.currentSeconds = timerSettings.pomodoroSeconds;
 }
 
 export const timerSlice = createSlice({
@@ -94,9 +99,11 @@ export const timerSlice = createSlice({
     },
     changeMinutes: (state, action: PayloadAction<number>) => {
       state.currentMinutes = action.payload;
+      localStorage.setItem('timer', JSON.stringify(state));
     },
     changeSeconds: (state, action: PayloadAction<number>) => {
       state.currentSeconds = action.payload;
+      localStorage.setItem('timer', JSON.stringify(state));
     },
     changePomodoroCount: (state, action: PayloadAction<number>) => {
       state.pomodoroCount = action.payload;
@@ -104,6 +111,10 @@ export const timerSlice = createSlice({
     },
     changeBreakCount: (state, action: PayloadAction<number>) => {
       state.breakCount = action.payload;
+      localStorage.setItem('timer', JSON.stringify(state));
+    },
+    changePauseStamp: (state, action: PayloadAction<number>) => {
+      state.pauseStamp = action.payload;
       localStorage.setItem('timer', JSON.stringify(state));
     },
   },
@@ -119,5 +130,6 @@ export const {
   changeSeconds,
   changePomodoroCount,
   changeBreakCount,
+  changePauseStamp,
 } = timerSlice.actions;
 export default timerSlice.reducer;

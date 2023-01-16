@@ -1,21 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Dropdown } from '../../../../../Dropdown';
 import { EIcons, Icon } from '../../../../../icons';
 import styles from './todomenu.scss';
 import { MenuItemsList } from './MenuItemsList/MenuItemsList';
+import { useCoordinates } from '../../../../../hooks/useCoordinates';
 
 interface ITodoMenuProps {
   timestamp: number;
   openEdit: () => void;
 }
 
-export function TodoMenu({ timestamp, openEdit }: ITodoMenuProps) {
-  const btnRef = useRef<HTMLButtonElement>(null);
-  const coordinates = btnRef.current?.getBoundingClientRect();
-  const top = coordinates
-    ? coordinates.top + coordinates.height + window.pageYOffset + 10
-    : 0;
-  const left = coordinates ? coordinates.left - coordinates.width - 35 : 0;
+export const TodoMenu = ({ timestamp, openEdit }: ITodoMenuProps) => {
+  const { btnRef, top, left } = useCoordinates(10, -35);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
@@ -42,4 +38,4 @@ export function TodoMenu({ timestamp, openEdit }: ITodoMenuProps) {
       )}
     </div>
   );
-}
+};
