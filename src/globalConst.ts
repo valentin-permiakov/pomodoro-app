@@ -33,13 +33,13 @@ export const timerSettings: ITimerSettings = {
 };
 
 export const DAYS = [
-  'Воскресенье',
-  'Понедельник',
-  'Вторник',
-  'Среда',
-  'Четверг',
-  'Пятница',
-  'Суббота',
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
 ];
 
 export const CHART_OPTIONS = {

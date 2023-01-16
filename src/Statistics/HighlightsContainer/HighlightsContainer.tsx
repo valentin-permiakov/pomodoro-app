@@ -24,21 +24,21 @@ export const HighlightsContainer = () => {
   return (
     <section className={styles.highlightsSection}>
       <Highlight
-        name="Фокус"
+        name="Focus"
         content={focus + '%'}
         icon="focusIcon"
         bgColor={focus !== 0 ? '#FFDDA9' : ''}
         iconColor={focus !== 0 ? '#FFAE35' : ''}
       />
       <Highlight
-        name="Время на паузе"
-        content={`${pausedTime > 0 ? pausedTime.toFixed() : 0} м`}
+        name="Paused Time"
+        content={`${pausedTime > 0 ? pausedTime.toFixed() : 0} m`}
         icon="pauseIcon"
         bgColor={pausedTime !== 0 ? '#DFDCFE' : ''}
         iconColor={pausedTime !== 0 ? '#9C97D7' : ''}
       />
       <Highlight
-        name="Остановки"
+        name="Number of stops"
         content={String(stopCount)}
         icon="stopIcon"
         bgColor={stopCount !== 0 ? '#C5F1FF' : ''}

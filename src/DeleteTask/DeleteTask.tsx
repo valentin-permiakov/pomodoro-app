@@ -48,12 +48,12 @@ export const DeleteTask = ({ onClose, timestamp }: IDeleteTaskProps) => {
   return ReactDOM.createPortal(
     <div className={styles.modal} ref={refModal}>
       <div className={styles.content} ref={refContent}>
-        <h3 className={styles.heading}>Удалить задачу?</h3>
+        <h3 className={styles.heading}>Do you want to delete the task?</h3>
         <button className={styles.deleteBtn} onClick={handleDelete}>
-          Удалить
+          Delete
         </button>
         <button className={styles.cancelBtn} onClick={onClose}>
-          Отмена
+          Cancel
         </button>
         <button className={styles.closeBtn} onClick={onClose}>
           <Icon name={EIcons.closeIcon} size={24} />

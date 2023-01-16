@@ -7,7 +7,7 @@ interface IRangeChoice {
 }
 
 const initialState: IRangeChoice = {
-  text: 'Эта неделя',
+  text: 'This week',
   weekIndex: 0,
   dayIndex: 0,
 };

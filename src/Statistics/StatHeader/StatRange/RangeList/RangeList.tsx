@@ -11,24 +11,24 @@ export const RangeList = ({ handleClick, handleHover }: IRangeListProps) => {
     <ul className={styles.rangeList} onMouseLeave={handleHover}>
       <li
         className={styles.rangeItem}
-        data-type="Эта неделя"
+        data-type="This week"
         onClick={handleClick}
       >
-        Эта неделя
+        This Week
       </li>
       <li
         className={styles.rangeItem}
-        data-type="Прошлая неделя"
+        data-type="Last week"
         onClick={handleClick}
       >
-        Прошлая неделя
+        Last week
       </li>
       <li
         className={styles.rangeItem}
-        data-type="2 недели назад"
+        data-type="2 weeks ago"
         onClick={handleClick}
       >
-        2 недели назад
+        2 weeks ago
       </li>
     </ul>
   );

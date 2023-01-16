@@ -8,7 +8,7 @@ export const Logo = () => {
     <div className={styles.container}>
       <Link to="/pomodoro-app" className={styles.logoContainer}>
         <Icon name={EIcons.logo} size={40} />
-        <h1 className={styles.logoHeader}>pomodoro_box</h1>
+        <h1 className={styles.logoHeader}>tomato_box</h1>
       </Link>
     </div>
   );

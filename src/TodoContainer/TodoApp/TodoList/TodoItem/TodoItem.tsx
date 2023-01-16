@@ -62,7 +62,7 @@ export const TodoItem = ({
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Название задачи"
+            placeholder="Task name"
             value={taskNameValue}
             ref={refText}
             onChange={handleTextChange}

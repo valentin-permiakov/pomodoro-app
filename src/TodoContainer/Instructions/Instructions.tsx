@@ -9,25 +9,23 @@ export const Instructions = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Ура! Теперь можно начать работать:</h2>
+      <h2 className={styles.heading}>It is time to work:</h2>
       <ul className={styles.instructionsList}>
+        <li className={styles.listItem}>Write the task description</li>
         <li className={styles.listItem}>
-          Выберите категорию и напишите название текущей задачи
-        </li>
-        <li className={styles.listItem}>Запустите таймер («помидор»)</li>
-        <li className={styles.listItem}>
-          Работайте пока «помидор» не прозвонит
+          Set the number of pomodoros needed to complete the task
         </li>
         <li className={styles.listItem}>
-          Сделайте короткий перерыв (3-5 минут)
+          You can edit the description or number of pomodoros later
         </li>
         <li className={styles.listItem}>
-          Продолжайте работать «помидор» за «помидором», пока задача не будут
-          выполнена. Каждые 4 «помидора» делайте длинный перерыв (15-30 минут).
+          You can drag the tasks around to reorder them
         </li>
+        <li className={styles.listItem}>Start the timer</li>
+        <li className={styles.listItem}>Work until the timer ends</li>
         <li className={styles.listItem}>
-          Для того, чтобы получать оповещения об окончании «помидоров» нажмите
-          на кнопку «Разрешить оповещения».
+          In order to receive notifications press the &apos;Allow
+          notifications&apos; button
         </li>
       </ul>
       <button
@@ -39,7 +37,7 @@ export const Instructions = () => {
           display: `${isGranted ? 'none' : 'block'}`,
         }}
       >
-        Разрешить оповещения
+        Allow notifications
       </button>
     </div>
   );

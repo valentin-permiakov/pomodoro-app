@@ -7,7 +7,7 @@ import './styles/main.global.scss';
 import './styles/_variables.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from './store/store';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Statistics } from './Statistics';
 
 export const App = () => {
@@ -19,6 +19,7 @@ export const App = () => {
       <Header />
       <Content>
         <Routes>
+          <Route path="/" element={<Navigate to="/pomodoro-app" />} />
           <Route
             path="/pomodoro-app"
             element={

@@ -19,7 +19,9 @@ export const PomodoroCount = () => {
       <p className={styles.imgContainer}>
         <Icon name={EIcons.logo} size={81} /> {count > 0 ? `x${count}` : ''}
       </p>
-      <p className={styles.countDescription}>{count} помидор</p>
+      <p className={styles.countDescription}>{`${count} ${
+        count !== 1 ? 'pomodoros' : 'pomodoro'
+      } `}</p>
     </aside>
   );
 };

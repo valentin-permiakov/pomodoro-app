@@ -146,13 +146,13 @@ export const TimerContols = ({
         className={styles.startBtn}
         onClick={!isStarted ? startTimer : pauseTimer}
       >
-        {isStarted ? 'Пауза' : isPaused ? 'Продолжить' : 'Старт'}
+        {isStarted ? 'Pause' : isPaused ? 'Continue' : 'Start'}
       </button>
       <button
         className={`${styles.stopBtn} ${isPaused ? styles.endTaskBtn : ''}`}
         onClick={isBreak ? skipBreak : isPaused ? deleteTask : resetTimer}
       >
-        {isBreak ? 'Пропустить' : isPaused ? 'Сделано' : 'Стоп'}
+        {isBreak ? 'Skip Break' : isPaused ? 'Done' : 'Stop'}
       </button>
     </div>
   );

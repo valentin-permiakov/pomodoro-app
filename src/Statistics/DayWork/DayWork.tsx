@@ -18,9 +18,9 @@ export const DayWork = () => {
     <aside className={styles.workContainer}>
       <h3 className={styles.workHeader}>{day}</h3>
       <p className={styles.workDescription}>
-        Вы работали над задачами в течение{' '}
+        You worked for{' '}
         <span className={styles.workTime}>
-          {stats[weekIndex + dayIndex].pomodoroMin} минут
+          {stats[weekIndex + dayIndex].pomodoroMin} minutes
         </span>
       </p>
     </aside>

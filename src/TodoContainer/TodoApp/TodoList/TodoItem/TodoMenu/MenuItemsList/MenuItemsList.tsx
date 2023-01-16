@@ -28,7 +28,7 @@ export const MenuItemsList = ({
           onClick={() => dispatch(increasePomorodo(timestamp))}
         >
           <Icon name={EIcons.increaseIcon} size={18} />
-          Увеличить
+          Add pomodoro
         </button>
       </li>
       <li className={styles.menuItem}>
@@ -37,7 +37,7 @@ export const MenuItemsList = ({
           onClick={() => dispatch(decreasePomorodo(timestamp))}
         >
           <Icon name={EIcons.decreaseIcon} size={18} />
-          Уменьшить
+          Remove pomodoro
         </button>
       </li>
       <li className={styles.menuItem}>
@@ -49,7 +49,7 @@ export const MenuItemsList = ({
           }}
         >
           <Icon name={EIcons.editIcon} size={18} />
-          Редактировать
+          Edit task
         </button>
       </li>
       <li className={styles.menuItem}>
@@ -58,7 +58,7 @@ export const MenuItemsList = ({
           onClick={() => dispatch(filterTodo(timestamp))}
         >
           <Icon name={EIcons.deleteIcon} size={18} />
-          Удалить
+          Delete task
         </button>
       </li>
     </ul>

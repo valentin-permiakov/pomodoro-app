@@ -17,7 +17,7 @@ interface ITimerProps {
 
 let timeOut: number;
 
-export const Timer = ({ taskName = 'Добавьте задание' }: ITimerProps) => {
+export const Timer = ({ taskName = 'Add a task' }: ITimerProps) => {
   const dispatch = useDispatch();
 
   const isStarted = useSelector((state: RootState) => state.timer.isStarted);
@@ -65,7 +65,7 @@ export const Timer = ({ taskName = 'Добавьте задание' }: ITimerPr
     <div className={styles.timer}>
       <Countdown minutes={minutes} seconds={seconds} isPaused={isPaused} />
       <h3 className={styles.task}>
-        <span>Задача - </span>
+        <span>Task - </span>
         {taskName}
       </h3>
       <TimerContols

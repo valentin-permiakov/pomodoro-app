@@ -37,13 +37,13 @@ export const TodoForm = () => {
     <form action="" className={styles.todoForm} onSubmit={handleSubmit}>
       <div className={styles.inputContainer}>
         <label className={styles.formLabel} htmlFor="todo-name">
-          Название задачи
+          Task name
         </label>
         <input
           type="text"
           className={`${styles.todoInput} ${styles.todoName}`}
           ref={refText}
-          placeholder="Название задачи"
+          placeholder="Task name"
           value={taskNameValue}
           onChange={handleTextChange}
           id="todo-name"
@@ -52,13 +52,13 @@ export const TodoForm = () => {
 
       <div className={styles.inputContainer}>
         <label className={styles.formLabel} htmlFor="todo-number">
-          Количество помидор
+          Pomodoro number
         </label>
         <input
           type="number"
           className={`${styles.todoInput} ${styles.todoNumber}`}
           ref={refNum}
-          placeholder="Количество помидор"
+          placeholder="Pomodoro number"
           value={taskPomodoroNumber}
           onChange={handleNumChange}
           id="todo-number"
@@ -71,7 +71,7 @@ export const TodoForm = () => {
           taskNameValue.length > 0 && taskPomodoroNumber > 0 ? false : true
         }
       >
-        Добавить
+        Add task
       </button>
     </form>
   );

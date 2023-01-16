@@ -17,9 +17,9 @@ export const StatRange = () => {
   const handleClick = (e: MouseEvent<HTMLLIElement>) => {
     if (e.currentTarget.dataset.type) {
       const weekIndex =
-        e.currentTarget.dataset.type === 'Эта неделя'
+        e.currentTarget.dataset.type === 'This week'
           ? 0
-          : e.currentTarget.dataset.type === 'Прошлая неделя'
+          : e.currentTarget.dataset.type === 'Last week'
           ? 7
           : 14;
       dispatch(
