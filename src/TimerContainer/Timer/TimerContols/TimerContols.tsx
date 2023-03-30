@@ -1,49 +1,21 @@
-import { AnyAction, Dispatch } from '@reduxjs/toolkit';
-import { clearTimeout } from 'worker-timers';
 import React from 'react';
-import {
-  changeBreakStatus,
-  changeFirstStartStatus,
-  changeMinutes,
-  changePauseStamp,
-  changePauseStatus,
-  changePomodoroCount,
-  changeSeconds,
-  changeTimerStatus,
-  initialState,
-} from '../../../store/timerSlice';
-import { ITodoItem, removeTodoItem } from '../../../store/todoSlice';
-import styles from './timer-contols.scss';
+import { clearTimeout } from 'worker-timers';
+import { ITimerControlsProps } from '../../../../types/interfaces';
 import {
   changeFinishedTaskCount,
   changePauseMin,
   changeStopCount,
 } from '../../../store/statisticSlice';
-
-interface ITimerControlsProps {
-  timeOut: number;
-  runTimer: (
-    timeOut: number,
-    dispatch: Dispatch<AnyAction>,
-    isBreak: boolean,
-    minutes: number,
-    seconds: number,
-    pomodoroCount: number,
-    breakCount: number,
-    taskList: ITodoItem[]
-  ) => void;
-  isStarted: boolean;
-  isBreak: boolean;
-  isPaused: boolean;
-  isFirstStart: boolean;
-  minutes: number;
-  seconds: number;
-  pomodoroCount: number;
-  breakCount: number;
-  taskList: ITodoItem[];
-  dispatch: Dispatch<AnyAction>;
-  pauseStamp: number;
-}
+import {
+  changeMinutes,
+  changePauseStamp,
+  changePomodoroCount,
+  changeSeconds,
+  changeTimerState,
+  initialState,
+} from '../../../store/timerSlice';
+import { removeTodoItem } from '../../../store/todoSlice';
+import styles from './timer-contols.scss';
 
 export const TimerContols = ({
   timeOut,
@@ -64,7 +36,7 @@ export const TimerContols = ({
 
   const startTimer = () => {
     if (timeOut !== undefined) clearTimeout(timeOut);
-    dispatch(changeTimerStatus());
+    dispatch(changeTimerState('isStarted'));
     runTimer(
       timeOut,
       dispatch,
@@ -79,10 +51,10 @@ export const TimerContols = ({
       startStamp = Date.now();
       const pauseMin = (startStamp - pauseStamp) / 1000 / 60;
       if (!isBreak) dispatch(changePauseMin(Math.round(pauseMin)));
-      dispatch(changePauseStatus());
+      dispatch(changeTimerState('isPaused'));
     }
     if (isFirstStart) {
-      dispatch(changeFirstStartStatus());
+      dispatch(changeTimerState('isFirstStart'));
     }
   };
 
@@ -91,8 +63,8 @@ export const TimerContols = ({
       clearTimeout(timeOut);
     }
     dispatch(changePauseStamp(Date.now()));
-    dispatch(changeTimerStatus());
-    dispatch(changePauseStatus());
+    dispatch(changeTimerState('isStarted'));
+    dispatch(changeTimerState('isPaused'));
   };
 
   const resetTimer = () => {
@@ -106,14 +78,14 @@ export const TimerContols = ({
     dispatch(changeSeconds(initialState.pomodoroSeconds));
     if (isPaused) {
       // resets isPaused state to default
-      dispatch(changePauseStatus());
-      dispatch(changeFirstStartStatus());
+      dispatch(changeTimerState('isPaused'));
+      dispatch(changeTimerState('isFirstStart'));
       dispatch(changeMinutes(initialState.pomodoroMinutes));
       dispatch(changeSeconds(initialState.pomodoroSeconds));
     }
     if (!isStarted) return;
-    dispatch(changeTimerStatus());
-    dispatch(changeFirstStartStatus());
+    dispatch(changeTimerState('isStarted'));
+    dispatch(changeTimerState('isFirstStart'));
   };
 
   const skipBreak = () => {
@@ -121,15 +93,15 @@ export const TimerContols = ({
     dispatch(changePomodoroCount(pomodoroCount + 1));
     dispatch(changeMinutes(initialState.pomodoroMinutes));
     dispatch(changeSeconds(initialState.pomodoroSeconds));
-    dispatch(changeBreakStatus());
+    dispatch(changeTimerState('isBreak'));
     if (isStarted) {
-      dispatch(changeTimerStatus());
-      dispatch(changeFirstStartStatus());
+      dispatch(changeTimerState('isStarted'));
+      dispatch(changeTimerState('isFirstStart'));
     }
     if (isPaused) {
       // resets isPaused state to default
-      dispatch(changePauseStatus());
-      dispatch(changeFirstStartStatus());
+      dispatch(changeTimerState('isPaused'));
+      dispatch(changeTimerState('isFirstStart'));
     }
   };
 
