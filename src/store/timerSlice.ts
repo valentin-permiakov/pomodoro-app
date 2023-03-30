@@ -77,20 +77,13 @@ export const timerSlice = createSlice({
   name: 'timer',
   initialState,
   reducers: {
-    changeTimerStatus: (state) => {
-      state.isStarted = !state.isStarted;
-      localStorage.setItem('timer', JSON.stringify(state));
-    },
-    changeBreakStatus: (state) => {
-      state.isBreak = !state.isBreak;
-      localStorage.setItem('timer', JSON.stringify(state));
-    },
-    changePauseStatus: (state) => {
-      state.isPaused = !state.isPaused;
-      localStorage.setItem('timer', JSON.stringify(state));
-    },
-    changeFirstStartStatus: (state) => {
-      state.isFirstStart = !state.isFirstStart;
+    changeTimerState: (
+      state,
+      action: PayloadAction<
+        'isFirstStart' | 'isStarted' | 'isBreak' | 'isPaused'
+      >
+    ) => {
+      state[action.payload] = !state[action.payload];
       localStorage.setItem('timer', JSON.stringify(state));
     },
     changeIsModalOpenStatus: (state, action: PayloadAction<boolean>) => {
@@ -121,15 +114,12 @@ export const timerSlice = createSlice({
 });
 
 export const {
-  changeTimerStatus,
-  changeBreakStatus,
-  changePauseStatus,
-  changeFirstStartStatus,
   changeIsModalOpenStatus,
   changeMinutes,
   changeSeconds,
   changePomodoroCount,
   changeBreakCount,
   changePauseStamp,
+  changeTimerState,
 } = timerSlice.actions;
 export default timerSlice.reducer;

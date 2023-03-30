@@ -4,18 +4,7 @@ import styles from './todoitem.scss';
 import { TodoMenu } from './TodoMenu';
 import { useDispatch } from 'react-redux';
 import { changeTask } from '../../../../store/todoSlice';
-
-interface ITodoItemProps {
-  name: string;
-  pomodoroNumber: number;
-  timestamp: number;
-  index: number;
-  isDragging: boolean;
-  onDragStart: (_event: React.DragEvent<HTMLLIElement>, index: number) => void;
-  onDragEnter: (_event: React.DragEvent<HTMLLIElement>, index: number) => void;
-  onDragEnd: (_event: React.DragEvent<HTMLLIElement>) => void;
-  getStyles: (index: number) => React.CSSProperties;
-}
+import { ITodoItemProps } from '../../../../../types/interfaces';
 
 export const TodoItem = ({
   name,

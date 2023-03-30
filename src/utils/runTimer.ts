@@ -5,13 +5,11 @@ import { changeBreakMin, changePomodoroMin } from '../store/statisticSlice';
 
 import {
   changeBreakCount,
-  changeBreakStatus,
-  changeFirstStartStatus,
   changeIsModalOpenStatus,
   changeMinutes,
   changePomodoroCount,
   changeSeconds,
-  changeTimerStatus,
+  changeTimerState,
   initialState,
 } from '../store/timerSlice';
 import { ITodoItem } from '../store/todoSlice';
@@ -50,9 +48,9 @@ export const runTimer = (
                   : initialState.breakMinutes
               )
         );
-        dispatch(changeBreakStatus());
-        dispatch(changeTimerStatus());
-        dispatch(changeFirstStartStatus());
+        dispatch(changeTimerState('isBreak'));
+        dispatch(changeTimerState('isStarted'));
+        dispatch(changeTimerState('isFirstStart'));
         dispatch(
           !isBreak
             ? changeBreakCount(breakCount + 1)
